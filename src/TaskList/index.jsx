@@ -1,13 +1,15 @@
 import React from "react";
 
 import Monster from "./Monster";
+import TaskList from "./TaskList";
 
-const TaskList = () => {
+const index = () => {
   return (
     <>
       <Monster />
+      <TaskList />
     </>
   );
 };
 
-export default TaskList;
+export default index;
