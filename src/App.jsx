@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Container } from "react-bootstrap";
+import GlobalWrapper from "./context/GlobalWrapper";
 
 import TaskList from "./TaskList";
 
 const App = () => {
   return (
-    <Container>
+    <GlobalWrapper>
       <TaskList />
-    </Container>
+    </GlobalWrapper>
   );
 };
 
