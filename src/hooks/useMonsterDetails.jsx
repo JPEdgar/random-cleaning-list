@@ -3,19 +3,18 @@ import React from "react";
 import useMonsterContext from "./context/useMonsterContext";
 
 const useMonsterDetails = () => {
-  const { monsterState, setMonsterState } = useMonsterContext();
+  const { monsterState: monsterDetails, setMonsterState } = useMonsterContext();
 
   const healMonster = () => {
-    const maxHP = monsterState.maxHP;
-    setMonsterState((curr) => ({ ...curr, currentHP: maxHP }));
+    setMonsterState((curr) => ({ ...curr, currentDamage: 0 }));
   };
 
-  const damageMonster = (incomingDamage) => {
-    const newHP = monsterState.currentHP - incomingDamage;
-    setMonsterState((curr) => ({ ...curr, currentHP: newHP }));
+  const damageMonster = (incomingDamage = 0) => {
+    const newDamage = monsterDetails.currentDamage + incomingDamage;
+    setMonsterState((curr) => ({ ...curr, currentDamage: newDamage }));
   };
 
-  return { monsterState, healMonster, damageMonster };
+  return { monsterDetails, healMonster, damageMonster };
 };
 
 export default useMonsterDetails;

@@ -7,7 +7,7 @@ const useCreateMonster = () => {
   const { setMonsterState } = useMonsterContext();
 
   const createNewMonster = () => {
-    setMonsterState({ ...MonsterData[0], currentHP: 0 });
+    setMonsterState({ ...MonsterData[0], currentDamage: 0 });
   };
 
   return { createNewMonster };

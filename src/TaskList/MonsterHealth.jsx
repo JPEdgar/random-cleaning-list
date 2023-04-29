@@ -5,8 +5,12 @@ import { ProgressBar } from "react-bootstrap";
 import { useMonsterDetails } from "../hooks";
 
 const MonsterHealth = ({ health }) => {
-  const {monsterState} = useMonsterDetails()
-  console.log(monsterState)
+  const {monsterDetails} = useMonsterDetails()
+  
+  
+  React.useEffect(() => {
+    console.log(monsterDetails)
+  }, [monsterDetails])
 
   return <ProgressBar now={health} />;
 };
