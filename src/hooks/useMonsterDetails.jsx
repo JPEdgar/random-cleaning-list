@@ -7,8 +7,11 @@ const useMonsterDetails = () => {
   const { monsterState: monsterDetails, dispatch: monsterDispatch } =
     useMonsterContext();
 
-  const healMonster = () => {
-    monsterDispatch({ type: MONSTER_TYPES.HEAL_MONSTER });
+  const healMonster = (incomingDamage = 0) => {
+    monsterDispatch({
+      type: MONSTER_TYPES.HEAL_MONSTER,
+      payload: incomingDamage,
+    });
   };
 
   const damageMonster = (incomingDamage = 0) => {
@@ -18,7 +21,11 @@ const useMonsterDetails = () => {
     });
   };
 
-  return { monsterDetails, healMonster, damageMonster };
+  const resetMonster = () => {
+    monsterDispatch({ type: MONSTER_TYPES.RESET_MONSTER });
+  };
+
+  return { monsterDetails, healMonster, damageMonster, resetMonster };
 };
 
 export default useMonsterDetails;

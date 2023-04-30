@@ -6,10 +6,11 @@ const monsterReducer = (state, action) => {
     case MONSTER_TYPES.SET_MONSTER:
       return action.payload;
     case MONSTER_TYPES.HEAL_MONSTER:
+      return { ...state, currentDamage: state.currentDamage - action.payload };
+    case MONSTER_TYPES.RESET_MONSTER:
       return { ...state, currentDamage: 0 };
     case MONSTER_TYPES.DAMAGE_MONSTER:
-      const newDamage = state.currentDamage + action.payload;
-      return { ...state, currentDamage: newDamage };
+      return { ...state, currentDamage: state.currentDamage + action.payload };
     default:
       return state;
   }

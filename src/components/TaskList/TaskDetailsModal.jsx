@@ -37,8 +37,13 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClick}>
-            Complete Task
+          <Button
+            onClick={handleClick}
+            variant={focus.completed ? "danger" : "primary"}
+          >
+            {focus.completed
+              ? "Task is already completed.  Undo?"
+              : "Complete Task"}
           </Button>
         </Modal.Footer>
       </Modal>
