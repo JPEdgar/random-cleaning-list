@@ -3,7 +3,7 @@
     "id": 0,
     "taskName": "Task of your choosing",
     "details": "Click any task you want to work on for extra damage and extra breaks.",
-    "taskDamage": "0",
+    "taskDamage": 0,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -18,7 +18,7 @@
     "id": 1,
     "taskName": "Collect trash",
     "details": "Collect trash all around the room.  This includes the nightstand, the corner, the walkway, and all across the floor.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -33,7 +33,7 @@
     "id": 2,
     "taskName": "Put away laundry",
     "details": "Put away any laundry that has been cleaned and ready to fold/hang.",
-    "taskDamage": "40",
+    "taskDamage": 40,
     "break": {
       "takeBreakFlag": true,
       "breakTimer": {
@@ -48,7 +48,7 @@
     "id": 3,
     "taskName": "Throw away empty cans",
     "details": "Look for any and all old sodas and discard them, then put any and all empty cans in the recycling bin.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -63,7 +63,7 @@
     "id": 4,
     "taskName": "Pick up loose object on floor",
     "details": "Look around the main walkways of the floor and pick up any and all loose objects strewn about.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -78,7 +78,7 @@
     "id": 5,
     "taskName": "Make bed",
     "details": "Fluff bedding and pillows and make the bed.",
-    "taskDamage": "20",
+    "taskDamage": 20,
     "break": {
       "takeBreakFlag": true,
       "breakTimer": {
@@ -93,7 +93,7 @@
     "id": 6,
     "taskName": "Clean air fryer",
     "details": "Replace disposable tray (if applicable), soak air fryer, then scrub shelves and the air fryer itself.",
-    "taskDamage": "20",
+    "taskDamage": 20,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -108,7 +108,7 @@
     "id": 7,
     "taskName": "Organize yarn",
     "details": "Put yard up and away, clean and organize any and all yarn shelves.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -123,7 +123,7 @@
     "id": 8,
     "taskName": "Clean fridge",
     "details": "Go through fridge and discard any old/bad food.",
-    "taskDamage": "30",
+    "taskDamage": 30,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -138,7 +138,7 @@
     "id": 9,
     "taskName": "Sweep bathroom",
     "details": "Pick up all the clothes from the floor and put in the hamper, then sweep the floor.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -153,7 +153,7 @@
     "id": 10,
     "taskName": "Clean bathroom counter/sink",
     "details": "Empty the counter, wipe it down, then put everything back in a clean and organized fashion, and use Windex on the mirror.",
-    "taskDamage": "20",
+    "taskDamage": 20,
     "break": {
       "takeBreakFlag": true,
       "breakTimer": {
@@ -168,7 +168,7 @@
     "id": 11,
     "taskName": "Vacuum",
     "details": "Get a vacuum of the entire common area and your corner.",
-    "taskDamage": "20",
+    "taskDamage": 20,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -183,7 +183,7 @@
     "id": 12,
     "taskName": "Dump litter boxes",
     "details": "Empty litter boxes, clean them, then fill with fresh litter.",
-    "taskDamage": "50",
+    "taskDamage": 50,
     "break": {
       "takeBreakFlag": true,
       "breakTimer": {
@@ -198,7 +198,7 @@
     "id": 13,
     "taskName": "Clean toilet",
     "details": "Put toilet cleaner in toilet then scrub.",
-    "taskDamage": "20",
+    "taskDamage": 20,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -213,7 +213,7 @@
     "id": 14,
     "taskName": "Dust bookshelves",
     "details": "Organize the bookshelves, remove trash, and wipe down the bookshelves of any dust/debris.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -228,7 +228,7 @@
     "id": 15,
     "taskName": "Clean food tower",
     "details": "Go through food tower and discard any old/bad foods (such as old, stale bread).",
-    "taskDamage": "20",
+    "taskDamage": 20,
     "break": {
       "takeBreakFlag": true,
       "breakTimer": {
@@ -243,7 +243,7 @@
     "id": 16,
     "taskName": "Clean cat fountain",
     "details": "Drain the cat fountain, wipe it down, and fill it with fresh water.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -258,7 +258,7 @@
     "id": 17,
     "taskName": "Clean food bowls",
     "details": "Empty cat's food bowls and clean them in the sink.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -273,7 +273,7 @@
     "id": 18,
     "taskName": "Make futon",
     "details": "Remove all items from the futon, wipe it down, then put everything back in a clean and organized fashion.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
@@ -288,7 +288,7 @@
     "id": 19,
     "taskName": "Clean entertainment center",
     "details": "Dust entertainment center, clean and organize components and all around it.",
-    "taskDamage": "10",
+    "taskDamage": 10,
     "break": {
       "takeBreakFlag": false,
       "breakTimer": {
