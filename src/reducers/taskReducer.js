@@ -8,8 +8,7 @@ const taskReducer = (state, action) => {
         x.id === action.payload.id
           ? { ...x, completed: !action.payload.completed }
           : x
-      );
-      console.log("returnState = ", returnState);
+      );    
       return returnState;
     default:
       return state;

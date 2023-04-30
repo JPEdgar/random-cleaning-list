@@ -1,3 +1,9 @@
 import MonsterData from "../../data/monsters.json";
 
-export default MonsterData;
+const initializeMonsterData = () => {
+  return {
+    ...MonsterData[0],
+    currentDamage: 0,
+  };
+};
+export default initializeMonsterData;

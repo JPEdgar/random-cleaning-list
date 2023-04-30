@@ -33,6 +33,10 @@ const Task = ({ data, handleShow, setFocus }) => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   console.log(taskData)
+  // }, [taskData])
+
   return (
     <div
       onClick={() => handleClick(taskData)}

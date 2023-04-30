@@ -1,13 +1,17 @@
 import React, { createContext, useReducer, useEffect } from "react";
 
-import TaskData from "../constants/initializations/initializeTaskList";
+import initializeTaskList from "../constants/initializations/initializeTaskList";
 
 import {taskReducer} from "../reducers";
 
 const TaskContext = createContext();
 
 const TaskProvider = ({ children }) => {
-  const [taskState, dispatch] = useReducer(taskReducer, TaskData);
+  const [taskState, dispatch] = useReducer(taskReducer, initializeTaskList());
+
+  // useEffect(() => {
+  //   console.log(taskState)
+  // }, [taskState])
 
   return (
     <TaskContext.Provider value={{ taskState, dispatch }}>

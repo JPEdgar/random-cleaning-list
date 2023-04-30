@@ -4,11 +4,10 @@ import { Row, Col } from "react-bootstrap";
 
 import Task from "./Task";
 import TaskDetailsModal from "./TaskDetailsModal";
-
-import TaskData from "../../constants/initializations/initializeTaskList";
+import { useTaskDetails } from "../../hooks";
 
 const TaskList = () => {
-  const [taskList, setTaskList] = useState([]);
+  const { taskList } = useTaskDetails();
   const [focus, setFocus] = useState({});
   const [show, setShow] = useState(false);
 
@@ -16,13 +15,8 @@ const TaskList = () => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    // id 0 = crit, which is pushed to the end of the array.
-    // This will eventually be reformatted into a fuction to create a random list
-    const reformattedTaskList = TaskData.filter((x) => x.id !== 0);
-    reformattedTaskList.push(TaskData[0]);
-
-    setTaskList(reformattedTaskList);
-  }, []);
+    console.log("taskList = ", taskList);
+  }, [taskList]);
 
   return (
     <>
