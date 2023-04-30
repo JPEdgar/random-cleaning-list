@@ -1,13 +1,17 @@
 import React from "react";
 
-import MonsterData from "../data/monsters.json";
+import { MONSTER_TYPES } from "../constants/types";
+import MonsterData from "../constants/initializations/initializeMonsters";
 import useMonsterContext from "./context/useMonsterContext";
 
 const useCreateMonster = () => {
-  const { setMonsterState } = useMonsterContext();
+  const { dispatch: monsterDispatch } = useMonsterContext();
 
   const createNewMonster = () => {
-    setMonsterState({ ...MonsterData[0], currentDamage: 0 });
+    monsterDispatch({
+      type: MONSTER_TYPES.SET_MONSTER,
+      payload: { ...MonsterData[0], currentDamage: 0 },
+    });
   };
 
   return { createNewMonster };

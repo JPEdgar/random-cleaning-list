@@ -1,6 +1,7 @@
-import TASK_TYPES from "../constants/types/taskTypes";
+import { TASK_TYPES } from "../constants/types";
 
 const taskReducer = (state, action) => {
+  console.log("taskReducer => ", { state, action });
   switch (action.type) {
     case TASK_TYPES.TOGGLE_COMPLETED:
       const returnState = state.map((x) =>

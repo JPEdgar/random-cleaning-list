@@ -1,3 +1,4 @@
 import taskReducer from "./taskReducer";
+import monsterReducer from "./monsterReducer";
 
-export { taskReducer };
+export { taskReducer, monsterReducer };

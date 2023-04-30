@@ -1,17 +1,19 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 
-import MonsterData from "../data/monsters.json";
+import MonsterData from "../constants/initializations/initializeMonsters";
+
+import { monsterReducer } from "../reducers";
 
 const MonsterContext = createContext();
 
 const MonsterProvider = ({ children }) => {
-  const [monsterState, setMonsterState] = useState({
+  const [monsterState, dispatch] = useReducer(monsterReducer, {
     ...MonsterData[0],
     currentDamage: 0,
   });
 
   return (
-    <MonsterContext.Provider value={{ monsterState, setMonsterState }}>
+    <MonsterContext.Provider value={{ monsterState, dispatch }}>
       {children}
     </MonsterContext.Provider>
   );
