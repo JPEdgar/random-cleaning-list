@@ -2,18 +2,16 @@ import React from "react";
 
 import useTaskContext from "./context/useTaskContext";
 
+import TASK_TYPES from "../constants/types/taskTypes";
+
 const useTaskDetails = () => {
-  const { taskState: taskList, setTaskState: setTaskLilst } = useTaskContext();
+  const { taskState: taskList, dispatch: taskDispatch } = useTaskContext();
 
   const toggleTaskCompletion = (data) => {
-    setTaskLilst((curr) =>
-      curr.map((x) =>
-        x.id === data.id ? { ...x, completed: !data.completed } : x
-      )
-    );
+    taskDispatch({ type: TASK_TYPES.TOGGLE_COMPLETED, payload: data });
   };
 
-  return { taskList, setTaskLilst, toggleTaskCompletion };
+  return { taskList, toggleTaskCompletion };
 };
 
 export default useTaskDetails;

@@ -5,7 +5,7 @@ import { Row, Col } from "react-bootstrap";
 import Task from "./Task";
 import TaskDetailsModal from "./TaskDetailsModal";
 
-import TasksList from "../../data/tasks.json";
+import TaskData from "../../constants/initializations/initializeTaskList";
 
 const TaskList = () => {
   const [taskList, setTaskList] = useState([]);
@@ -18,8 +18,8 @@ const TaskList = () => {
   useEffect(() => {
     // id 0 = crit, which is pushed to the end of the array.
     // This will eventually be reformatted into a fuction to create a random list
-    const reformattedTaskList = TasksList.filter((x) => x.id !== 0);
-    reformattedTaskList.push(TasksList[0]);
+    const reformattedTaskList = TaskData.filter((x) => x.id !== 0);
+    reformattedTaskList.push(TaskData[0]);
 
     setTaskList(reformattedTaskList);
   }, []);
