@@ -8,10 +8,6 @@ import { useMonsterDetails } from "../../hooks";
 const MonsterHealth = () => {
   const { monsterDetails } = useMonsterDetails();
 
-  React.useEffect(() => {
-    console.log(monsterDetails);
-  }, [monsterDetails]);
-
   return (
     <div className="d-flex">
       <div className="justify-content-center align-items-center">

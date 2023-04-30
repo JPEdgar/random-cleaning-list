@@ -1,7 +1,7 @@
 import { TASK_TYPES } from "../constants/types";
 
 const taskReducer = (state, action) => {
-  console.log("taskReducer => ", { state, action });
+  // console.log("taskReducer => ", { state, action });
   switch (action.type) {
     case TASK_TYPES.TOGGLE_COMPLETED:
       const returnState = state.map((x) =>
@@ -9,6 +9,7 @@ const taskReducer = (state, action) => {
           ? { ...x, completed: !action.payload.completed }
           : x
       );
+      console.log("returnState = ", returnState);
       return returnState;
     default:
       return state;
