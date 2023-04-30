@@ -14,10 +14,6 @@ const TaskList = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-    console.log("taskList = ", taskList);
-  }, [taskList]);
-
   return (
     <>
       <TaskDetailsModal

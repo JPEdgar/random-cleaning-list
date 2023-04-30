@@ -31,11 +31,7 @@ const Task = ({ data, handleShow, setFocus }) => {
     } else {
       setTaskData(data);
     }
-  }, []);
-
-  // useEffect(() => {
-  //   console.log(taskData)
-  // }, [taskData])
+  }, [data]);
 
   return (
     <div
