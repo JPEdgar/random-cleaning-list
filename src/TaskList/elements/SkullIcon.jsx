@@ -3,27 +3,22 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSkull } from "@fortawesome/free-solid-svg-icons";
 
-import MouseoverInfo from "./MouseoverInfo";
-
-import { useBookshelf } from "../../hooks";
-
-const WishListIcon = ({ bookData }) => {
-  const { isOnWishList, toggleWishList, isLoadingFlag } = useBookshelf();
-
-  const handleClick = async () => {
-    toggleWishList(bookData);
-  };
-
+const SkullIcon = () => {
   return (
-    <MouseoverInfo>
+    <div
+      style={{
+        border: "solid",
+        padding: "0.3rem",
+        borderRadius: "50%",
+        color: "red",
+      }}
+    >
       <FontAwesomeIcon
-        style={{
-          color: "red",
-        }}
+        style={{ color: "red", fontSize: "2.5rem" }}
         icon={faSkull}
       />
-    </MouseoverInfo>
+    </div>
   );
 };
 
-export default WishListIcon;
+export default SkullIcon;
