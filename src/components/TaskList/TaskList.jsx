@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 
 import Task from "./Task";
+import TaskDetailsModal from "./TaskDetailsModal";
 
 import TasksList from "../../data/tasks.json";
 
@@ -12,15 +13,25 @@ const TaskList = () => {
   const reformattedTaskList = TasksList.filter((x) => x.id !== 0);
   reformattedTaskList.push(TasksList[0]);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
+      <TaskDetailsModal
+        show={show}
+        handleClose={() => handleClose()}
+        handleShow={() => handleShow()}
+      />
       <Row>
         <Col xs={{ span: 4, offset: 2 }}>
           {reformattedTaskList &&
             reformattedTaskList.map(
               (task, index) =>
                 index < 10 && (
-                  <Task key={`task-${task.id}`} data={task} index={index} />
+                  <Task key={`task-${task.id}`} data={task} index={index} handleShow={() => handleShow()}/>
                 )
             )}
         </Col>
@@ -29,7 +40,7 @@ const TaskList = () => {
             reformattedTaskList.map(
               (task, index) =>
                 index >= 10 && (
-                  <Task key={`task-${task.id}`} data={task} index={index} />
+                  <Task key={`task-${task.id}`} data={task} index={index} handleShow={() => handleShow()}/>
                 )
             )}
         </Col>

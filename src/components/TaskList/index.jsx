@@ -9,7 +9,7 @@ const index = () => {
     <>
       <Monster />
       <TaskList />
-      <MonsterHealth health={60}/>
+      <MonsterHealth />
     </>
   );
 };

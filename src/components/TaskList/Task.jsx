@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-const Task = ({ data, index }) => {
+const Task = ({ data, handleShow }) => {
   const [taskData, setTaskData] = useState(null);
+  const [hoverFlag, setHoverFlag] = useState(false);
+
+  const style = {
+    backgroundColor: hoverFlag ? "lightblue" : "white",
+    cursor: "pointer",
+  };
+
+  const handleMouseEnter = () => {
+    setHoverFlag(true);
+  };
+
+  const handleMouseExit = () => {
+    setHoverFlag(false);
+  };
 
   useEffect(() => {
     if (data.id === 0) {
@@ -14,18 +28,21 @@ const Task = ({ data, index }) => {
   }, []);
 
   return (
-    <>
-      <p>
-        <span
-          className="d-inline-block text-end pe-2"
-          style={{ width: "2.5rem" }}
-        >
-          {taskData?.break.takeBreakFlag && <span className="ps-0">*</span>}
-          {taskData?.id}.
-        </span>
-        <span>{taskData?.taskName}</span>
-      </p>
-    </>
+    <div
+      onClick={handleShow}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseExit}
+      style={style}
+    >
+      <span
+        className="d-inline-block text-end pe-2"
+        style={{ width: "2.5rem" }}
+      >
+        {taskData?.break.takeBreakFlag && <span className="ps-0">*</span>}
+        {taskData?.id}.
+      </span>
+      <span>{taskData?.taskName}</span>
+    </div>
   );
 };
 
