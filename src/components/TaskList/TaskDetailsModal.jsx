@@ -2,13 +2,21 @@ import React from "react";
 
 import { Button, Modal } from "react-bootstrap";
 
+import useTaskDetails from "../../hooks/useTaskDetails";
+
 const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
-  console.log("focus = ", focus);
+  const { toggleTaskCompletion } = useTaskDetails();
+
   const breakFlag = focus?.break?.takeBreakFlag;
   const multiplier = breakFlag ? focus?.break.breakTimer.multiplier : 0;
   const numerical = breakFlag ? focus?.break.breakTimer.numerical : 0;
   const modifier =
     numerical > 0 ? `+${numerical}` : numerical < 0 ? `-${numerical}` : 0;
+
+  const handleClick = () => {
+    toggleTaskCompletion(focus);
+    handleClose();
+  };
 
   return (
     <>
@@ -29,7 +37,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleClick}>
             Complete Task
           </Button>
         </Modal.Footer>

@@ -1,12 +1,15 @@
 import { Container } from "react-bootstrap";
 
 import { MonsterProvider } from "./MonsterContext";
+import { TaskProvider } from "./TaskContext";
 
 const GlobalWrapper = ({ children }) => {
   return (
     <>
       <Container>
-        <MonsterProvider>{children}</MonsterProvider>
+        <TaskProvider>
+          <MonsterProvider>{children}</MonsterProvider>
+        </TaskProvider>
       </Container>
     </>
   );

@@ -1,4 +1,5 @@
 import useMonsterDetails from "./useMonsterDetails";
 import useCreateMonster from "./useCreateMonster";
+import useTaskDetails from "./useTaskDetails";
 
-export { useMonsterDetails, useCreateMonster };
+export { useMonsterDetails, useCreateMonster, useTaskDetails };

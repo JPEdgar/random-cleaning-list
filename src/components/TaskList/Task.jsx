@@ -7,10 +7,13 @@ const Task = ({ data, handleShow, setFocus }) => {
   const style = {
     backgroundColor: hoverFlag ? "lightblue" : "white",
     cursor: "pointer",
+    // textDecoration: "line-through"
+    textDecoration: taskData?.completed ? "line-through" : "",
   };
 
   const handleMouseEnter = () => {
     setHoverFlag(true);
+    console.log(taskData);
   };
 
   const handleMouseExit = () => {
