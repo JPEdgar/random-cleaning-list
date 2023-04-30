@@ -1,14 +1,16 @@
 import React from "react";
 
-import GlobalWrapper from "./context/GlobalWrapper";
-
 import TaskList from "./components/TaskList";
+import { useTaskDetails } from "./hooks";
 
 const App = () => {
+  const {taskList} = useTaskDetails()
   return (
-    <GlobalWrapper>
+<>
+      <button onClick={() => console.log(taskList)}>Log Task List</button>
       <TaskList />
-    </GlobalWrapper>
+</>
+ 
   );
 };
 
