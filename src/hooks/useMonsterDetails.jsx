@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import useMonsterContext from "./context/useMonsterContext";
 import { MONSTER_TYPES } from "../constants/types";
