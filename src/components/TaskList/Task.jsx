@@ -47,7 +47,12 @@ const Task = ({ data, handleShow, setFocus }) => {
         {taskData?.break.takeBreakFlag && <span className="ps-0">*</span>}
         {taskData?.id}.
       </span>
-      <span>{taskData?.taskName}</span>
+      <span>
+        {taskData?.taskName}
+        <span  className="ms-1" style={{ fontSize: "0.75rem" }}>
+          ({taskData?.taskDamage} damage)
+        </span>
+      </span>
     </div>
   );
 };

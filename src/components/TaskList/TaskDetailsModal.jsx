@@ -24,7 +24,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
         <Modal.Header closeButton>
           <Modal.Title>{focus.taskName}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{focus.details}1</Modal.Body>
+        <Modal.Body>{focus.details}</Modal.Body>
         <Modal.Body>{focus.taskDamage} points of damage.</Modal.Body>
         {breakFlag && (
           <Modal.Body>
