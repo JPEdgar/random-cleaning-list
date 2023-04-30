@@ -9,6 +9,7 @@ import TasksList from "../../data/tasks.json";
 
 const TaskList = () => {
   const [taskList, setTaskList] = useState([]);
+  const [focus, setFocus] = useState({});
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,6 +20,7 @@ const TaskList = () => {
     // This will eventually be reformatted into a fuction to create a random list
     const reformattedTaskList = TasksList.filter((x) => x.id !== 0);
     reformattedTaskList.push(TasksList[0]);
+
     setTaskList(reformattedTaskList);
   }, []);
 
@@ -28,6 +30,7 @@ const TaskList = () => {
         show={show}
         handleClose={() => handleClose()}
         handleShow={() => handleShow()}
+        focus={focus}
       />
       <Row>
         <Col xs={{ span: 4, offset: 2 }}>
@@ -37,8 +40,8 @@ const TaskList = () => {
                 <Task
                   key={`task-${task.id}`}
                   data={task}
-                  index={index}
-                  handleShow={() => handleShow()}
+                  handleShow={handleShow}
+                  setFocus={setFocus}
                 />
               )
           )}
@@ -50,8 +53,8 @@ const TaskList = () => {
                 <Task
                   key={`task-${task.id}`}
                   data={task}
-                  index={index}
-                  handleShow={() => handleShow()}
+                  handleShow={handleShow}
+                  setFocus={setFocus}
                 />
               )
           )}
