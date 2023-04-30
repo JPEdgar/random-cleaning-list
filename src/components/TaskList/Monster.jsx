@@ -2,7 +2,7 @@ import React from "react";
 
 import { Image, Row } from "react-bootstrap";
 
-import MonsterList from "../data/monsters.json";
+import MonsterList from "../../data/monsters.json";
 
 const Monster = () => {
   return (

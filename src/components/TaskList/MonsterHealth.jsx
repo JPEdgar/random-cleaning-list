@@ -2,8 +2,8 @@ import React from "react";
 
 import { ProgressBar } from "react-bootstrap";
 
-import SkullIcon from "./elements/SkullIcon";
-import { useMonsterDetails } from "../hooks";
+import SkullIcon from "../elements/SkullIcon";
+import { useMonsterDetails } from "../../hooks";
 
 const MonsterHealth = () => {
   const { monsterDetails } = useMonsterDetails();
@@ -19,7 +19,7 @@ const MonsterHealth = () => {
       </div>
       <div className="w-100">
         <span>
-          HP: {monsterDetails.maxHP - monsterDetails.currentDamage} /{" "}
+          HP: {monsterDetails.maxHP - monsterDetails.currentDamage} /
           {monsterDetails.maxHP}
         </span>
         <ProgressBar

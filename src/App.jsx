@@ -2,7 +2,7 @@ import React from "react";
 
 import GlobalWrapper from "./context/GlobalWrapper";
 
-import TaskList from "./TaskList";
+import TaskList from "./components/TaskList";
 
 const App = () => {
   return (

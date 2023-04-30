@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 
 import Task from "./Task";
 
-import TasksList from "../data/tasks.json";
+import TasksList from "../../data/tasks.json";
 
 const TaskList = () => {
   // id 0 = crit, which is pushed to the end of the array.
