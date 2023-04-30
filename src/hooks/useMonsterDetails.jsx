@@ -7,17 +7,17 @@ const useMonsterDetails = () => {
   const { monsterState: monsterDetails, dispatch: monsterDispatch } =
     useMonsterContext();
 
-  const healMonster = (incomingDamage = 0) => {
+  const healMonster = (incomingDamage = 0, critFlag = false) => {
     monsterDispatch({
       type: MONSTER_TYPES.HEAL_MONSTER,
-      payload: incomingDamage,
+      payload: { incomingDamage, critFlag },
     });
   };
 
-  const damageMonster = (incomingDamage = 0) => {
+  const damageMonster = (incomingDamage = 0, critFlag = false) => {
     monsterDispatch({
       type: MONSTER_TYPES.DAMAGE_MONSTER,
-      payload: incomingDamage,
+      payload: { incomingDamage, critFlag },
     });
   };
 

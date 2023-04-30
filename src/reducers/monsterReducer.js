@@ -6,11 +6,19 @@ const monsterReducer = (state, action) => {
     case MONSTER_TYPES.SET_MONSTER:
       return action.payload;
     case MONSTER_TYPES.HEAL_MONSTER:
-      return { ...state, currentDamage: state.currentDamage - action.payload };
+      const healAmount = action.payload.critFlag
+        ? action.payload.incomingDamage * 1.5
+        : action.payload.incomingDamage;
+
+      return { ...state, currentDamage: state.currentDamage - healAmount };
+    case MONSTER_TYPES.DAMAGE_MONSTER:
+      const damageMonster = action.payload.critFlag
+        ? action.payload.incomingDamage * 1.5
+        : action.payload.incomingDamage;
+
+      return { ...state, currentDamage: state.currentDamage + damageMonster };
     case MONSTER_TYPES.RESET_MONSTER:
       return { ...state, currentDamage: 0 };
-    case MONSTER_TYPES.DAMAGE_MONSTER:
-      return { ...state, currentDamage: state.currentDamage + action.payload };
     default:
       return state;
   }

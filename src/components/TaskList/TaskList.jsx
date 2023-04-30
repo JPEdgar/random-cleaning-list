@@ -7,7 +7,7 @@ import TaskDetailsModal from "./TaskDetailsModal";
 import { useTaskDetails, useMonsterDetails } from "../../hooks";
 
 const TaskList = () => {
-  const { taskList } = useTaskDetails();
+  const { taskList, critFlag } = useTaskDetails();
   const { monsterDetails } = useMonsterDetails();
   const [focus, setFocus] = useState({});
   const [show, setShow] = useState(false);
@@ -26,7 +26,7 @@ const TaskList = () => {
   }, [monsterDetails]);
 
   return (
-    <>
+    <div style={{ border: critFlag ? "5px solid red" : "" }} className="p-1">
       <TaskDetailsModal
         show={show}
         handleClose={() => handleClose()}
@@ -73,7 +73,7 @@ const TaskList = () => {
           </Col>
         </Row>
       )}
-    </>
+    </div>
   );
 };
 

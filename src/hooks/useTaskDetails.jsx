@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import useTaskContext from "./context/useTaskContext";
 import { useMonsterDetails } from "./";
@@ -6,21 +6,34 @@ import { useMonsterDetails } from "./";
 import { TASK_TYPES } from "../constants/types";
 
 const useTaskDetails = () => {
-  const { taskState: taskList, dispatch: taskDispatch } = useTaskContext();
+  const {
+    taskState: taskList,
+    dispatch: taskDispatch,
+    critFlag,
+    setCritFlag,
+  } = useTaskContext();
   const { damageMonster, healMonster } = useMonsterDetails();
 
   const toggleTaskCompletion = (data) => {
+    const tempCritFlag = critFlag;
     if (data.completed) {
       taskDispatch({ type: TASK_TYPES.TOGGLE_COMPLETED, payload: data });
-      healMonster(data.taskDamage);
+      healMonster(data.taskDamage, data.critFlag);
     } else {
-      taskDispatch({ type: TASK_TYPES.TOGGLE_COMPLETED, payload: data });
-      damageMonster(data.taskDamage);
+      taskDispatch({
+        type: TASK_TYPES.TOGGLE_COMPLETED,
+        payload: { ...data, critFlag: tempCritFlag },
+      });
+      damageMonster(data.taskDamage, tempCritFlag);
     }
-
+    setCritFlag(false);
   };
 
-  return { taskList, toggleTaskCompletion };
+  const activateCrit = () => {
+    setCritFlag(true);
+  };
+
+  return { taskList, toggleTaskCompletion, critFlag, activateCrit };
 };
 
 export default useTaskDetails;
