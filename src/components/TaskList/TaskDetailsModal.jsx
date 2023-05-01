@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Button, Modal, Form, Row, Col } from "react-bootstrap";
+import { Button, Modal, Form, Row, Col, InputGroup} from "react-bootstrap";
 
 import EditIcon from "../elements/EditIcon";
 import CloseIcon from "../elements/CloseIcon";
@@ -38,6 +38,22 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
       return { ...curr, break: { ...tempBreakData } };
     });
   };
+
+  const handleDiscardChanges = () => {
+    setData({
+      taskName: focus.taskName,
+      details: focus.details,
+      taskDamage: focus.taskDamage,
+      break: {
+        takeBreakFlag: focus.break.takeBreakFlag,
+        multiplier: focus.break.multiplier,
+        numerical: focus.break.numerical,
+        modifier: focus.break.modifier,
+      },
+      completed: focus.completed,
+      critFlag: focus.critFlag,
+    });
+  }
 
   const saveEditData = () => {
     //
@@ -114,12 +130,19 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
                     <Form.Group>
                       <Form.Control as="textarea" rows={3} name="details" value={data.details} onChange={handleChange} />
                     </Form.Group>
+
+                    <Form.Group className="my-1 h-100 d-flex align-items-end">
+                      <Form.Label > Damage: </Form.Label>
+                      <Form.Control type="number" name="taskDamage" value={data.taskDamage} onChange={handleChange} />
+                    </Form.Group>
+
                     <Form.Group className="mt-2">
                       <Form.Check type="checkbox" label="Toggle break" checked={data.break.takeBreakFlag} name="takeBreakFlag" onChange={handleBreak} />
                     
                       {data.break.takeBreakFlag && (
                         <>
                           <Row>
+                            
                             <Form.Group as={Col} xs={12} lg={4} className="mb-1" >
                               <Form.Label className="mb-0"> Number of Dice: </Form.Label>
                               <Form.Control type="number" name="multiplier" value={data.break.multiplier} onChange={handleBreak} />
@@ -171,8 +194,10 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
           {focusID === 20 && ( <Button onClick={() => handleClick()} variant="warning"> Score a critical hit? </Button> )}
           {focusID !== 20 &&
 
-            (editFlag ? (
+            (editFlag ? (<>
+              <Button onClick={() => handleDiscardChanges()} variant="warning">Discard Changes</Button>
               <Button onClick={() => saveEditData()} variant="success"> Save Changes </Button>
+            </>
             ) : (
               <Button onClick={() => handleClick()} variant={completedFlag ? "danger" : "primary"} >
 
@@ -180,7 +205,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
 
               </Button>
             ))}
-            
+
         </Modal.Footer>
       </Modal>
     </>
