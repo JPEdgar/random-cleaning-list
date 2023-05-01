@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { Row, Col, Stack } from "react-bootstrap";
 
-import EllipsisIcon from "../elements/EllipsisIcon";
-
 const Task = ({ data, handleShow, setFocus }) => {
   const [taskData, setTaskData] = useState(null);
   const [hoverFlag, setHoverFlag] = useState(false);
@@ -67,7 +65,6 @@ const Task = ({ data, handleShow, setFocus }) => {
           </div>
         </Col>
       </Row>
-      <EllipsisIcon setFocus={setFocus} handleShow={handleShow} data={data} />
     </Stack>
   );
 };

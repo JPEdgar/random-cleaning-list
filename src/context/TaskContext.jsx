@@ -8,10 +8,20 @@ const TaskContext = createContext();
 
 const TaskProvider = ({ children }) => {
   const [taskState, dispatch] = useReducer(taskReducer, initializeTaskList());
-  const [critFlag, setCritFlag] = useState(false)
-  
+  const [critFlag, setCritFlag] = useState(false);
+  const [editFlag, setEditFlag] = useState(false);
+
   return (
-    <TaskContext.Provider value={{ taskState, dispatch, critFlag, setCritFlag }}>
+    <TaskContext.Provider
+      value={{
+        taskState,
+        dispatch,
+        critFlag,
+        setCritFlag,
+        editFlag,
+        setEditFlag,
+      }}
+    >
       {children}
     </TaskContext.Provider>
   );

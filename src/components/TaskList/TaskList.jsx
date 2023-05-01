@@ -7,13 +7,16 @@ import TaskDetailsModal from "./TaskDetailsModal";
 import { useTaskDetails, useMonsterDetails } from "../../hooks";
 
 const TaskList = () => {
-  const { taskList, critFlag } = useTaskDetails();
+  const { taskList, critFlag, setEditFlag } = useTaskDetails();
   const { monsterDetails } = useMonsterDetails();
   const [focus, setFocus] = useState({});
   const [show, setShow] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setEditFlag(false)
+    setShow(false);
+  };
   const handleShow = () => setShow(true);
 
   const hideAlert = () => {

@@ -11,6 +11,8 @@ const useTaskDetails = () => {
     dispatch: taskDispatch,
     critFlag,
     setCritFlag,
+    editFlag,
+    setEditFlag,
   } = useTaskContext();
   const { damageMonster, healMonster } = useMonsterDetails();
 
@@ -33,7 +35,14 @@ const useTaskDetails = () => {
     setCritFlag(true);
   };
 
-  return { taskList, toggleTaskCompletion, critFlag, activateCrit };
+  return {
+    taskList,
+    toggleTaskCompletion,
+    critFlag,
+    activateCrit,
+    editFlag,
+    setEditFlag,
+  };
 };
 
 export default useTaskDetails;
