@@ -8,6 +8,7 @@ const Task = ({ data, handleShow, setFocus }) => {
     backgroundColor: hoverFlag ? "lightblue" : "white",
     cursor: "pointer",
     textDecoration: taskData?.completed ? "line-through" : "",
+    borderRadius: "5px"
   };
 
   const handleMouseEnter = () => {
@@ -39,6 +40,7 @@ const Task = ({ data, handleShow, setFocus }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseExit}
       style={style}
+      className="my-1"
     >
       <span
         className="d-inline-block text-end pe-2"
