@@ -63,7 +63,7 @@ const Task = ({ data, handleShow, setFocus }) => {
           </span>
         </span>
       </div>
-      <EllipsisIcon />
+      <EllipsisIcon data={data}/>
     </div>
   );
 };
