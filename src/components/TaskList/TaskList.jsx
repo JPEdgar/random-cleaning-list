@@ -17,11 +17,10 @@ const TaskList = () => {
     setEditFlag(false)
     setShow(false);
   };
+
   const handleShow = () => setShow(true);
 
-  const hideAlert = () => {
-    setShowAlert(false);
-  };
+  const hideAlert = () => { setShowAlert(false); };
 
   useEffect(() => {
     if (monsterDetails.currentDamage >= monsterDetails.maxHP)
@@ -30,12 +29,8 @@ const TaskList = () => {
 
   return (
     <div style={{ border: critFlag ? "5px solid red" : "" }} className="p-1">
-      <TaskDetailsModal
-        show={show}
-        handleClose={() => handleClose()}
-        handleShow={() => handleShow()}
-        focus={focus}
-      />
+      <TaskDetailsModal show={show} handleClose={() => handleClose()} handleShow={() => handleShow()} focus={focus} />
+
       {showAlert && (
         <Alert variant="warning">
           <Alert.Heading>You've killed the chore monster!</Alert.Heading>
@@ -46,33 +41,14 @@ const TaskList = () => {
           </p>
         </Alert>
       )}
+
       {!showAlert && (
         <Row>
           <Col xs={{ span: 4, offset: 2 }}>
-            {taskList.map(
-              (task, index) =>
-                index < 10 && (
-                  <Task
-                    key={`task-${task.id}`}
-                    data={task}
-                    handleShow={handleShow}
-                    setFocus={setFocus}
-                  />
-                )
-            )}
+            {taskList.map( (task, index) => index < 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
           </Col>
           <Col xs={{ span: 4, offset: -2 }}>
-            {taskList.map(
-              (task, index) =>
-                index >= 10 && (
-                  <Task
-                    key={`task-${task.id}`}
-                    data={task}
-                    handleShow={handleShow}
-                    setFocus={setFocus}
-                  />
-                )
-            )}
+            {taskList.map( (task, index) => index >= 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
           </Col>
         </Row>
       )}
