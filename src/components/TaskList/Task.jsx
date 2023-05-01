@@ -12,6 +12,7 @@ const Task = ({ data, handleShow, setFocus }) => {
     lineHeight: "0.9rem",
     borderRadius: "5px",
     height: "2.25rem",
+    border: "solid 1px rgb(200,200,200)"
   };
 
   const strikeThroughStyle = {

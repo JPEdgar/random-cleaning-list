@@ -178,7 +178,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
                   <Modal.Body>{focus.taskDamage} points of damage.</Modal.Body>
 
                   {breakFlag && (
-                    <Modal.Body> When task is completed, take a break for {multiplier}d {numerical} {modifier !== 0 && modifier} minutes </Modal.Body>
+                    <Modal.Body> When task is completed, take a break for {multiplier}d{numerical}{modifier !== 0 && modifier} minutes </Modal.Body>
                   )}
 
                 </>
