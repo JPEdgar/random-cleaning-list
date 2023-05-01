@@ -2,6 +2,8 @@ import React from "react";
 
 import { Button, Modal } from "react-bootstrap";
 
+import EditIcon from "../elements/EditIcon";
+import CloseIcon from "../elements/CloseIcon";
 import useTaskDetails from "../../hooks/useTaskDetails";
 
 const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
@@ -24,42 +26,45 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
 
   return (
     <>
-      {focus.id === 20 ? (
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{focus.taskName}</Modal.Title>
-          </Modal.Header>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header>
+          <Modal.Title className="d-flex justify-content-between w-100">
+            <div>{focus.taskName}</div>
+            <div className="d-flex">
+              <EditIcon />
+              <CloseIcon handleClose={handleClose}/>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        {focus.id === 20 && (
           <Modal.Body>
             This modifier will critical hit the boss on the next task.
           </Modal.Body>
+        )}
+        {focus.id !== 20 && (
+          <>
+            <Modal.Body>{focus.details}</Modal.Body>
+            <Modal.Body>{focus.taskDamage} points of damage.</Modal.Body>
+            {breakFlag && (
+              <Modal.Body>
+                When task is completed, take a break for {multiplier}d
+                {numerical}
+                {modifier !== 0 && modifier} minutes
+              </Modal.Body>
+            )}
+          </>
+        )}
 
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          {focus.id === 20 && (
             <Button onClick={() => handleClick()} variant="warning">
               Score a critical hit?
             </Button>
-          </Modal.Footer>
-        </Modal>
-      ) : (
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{focus.taskName}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>{focus.details}</Modal.Body>
-          <Modal.Body>{focus.taskDamage} points of damage.</Modal.Body>
-          {breakFlag && (
-            <Modal.Body>
-              When task is completed, take a break for {multiplier}d{numerical}
-              {modifier !== 0 && modifier} minutes
-            </Modal.Body>
           )}
-
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
+          {focus.id !== 20 && (
             <Button
               onClick={() => handleClick()}
               variant={focus.completed ? "danger" : "primary"}
@@ -68,9 +73,9 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
                 ? "Task is already completed.  Undo?"
                 : "Complete Task"}
             </Button>
-          </Modal.Footer>
-        </Modal>
-      )}
+          )}
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { Row, Col, Stack } from "react-bootstrap";
+
 import EllipsisIcon from "../elements/EllipsisIcon";
 
 const Task = ({ data, handleShow, setFocus }) => {
@@ -9,9 +11,13 @@ const Task = ({ data, handleShow, setFocus }) => {
   const style = {
     backgroundColor: hoverFlag ? "lightblue" : "white",
     cursor: "pointer",
-    textDecoration: taskData?.completed ? "line-through" : "",
+    lineHeight: "0.9rem",
     borderRadius: "5px",
-    height: "2rem",
+    height: "2.25rem", 
+  };
+
+  const strikeThroughStyle = {
+    textDecoration: taskData?.completed ? "line-through" : "",
   };
 
   const handleMouseEnter = () => {
@@ -38,33 +44,31 @@ const Task = ({ data, handleShow, setFocus }) => {
   }, [data]);
 
   return (
-    <div
+    <Stack
+      direction="horizontal"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseExit}
       style={style}
-      className="my-1 align-items-center d-flex"
+      className="my-1"
     >
-      <div
-        className="d-inline-block text-end pe-2"
-        style={{ width: "2.5rem" }}
-        onClick={() => handleClick(taskData)}
-      >
-        {taskData?.break.takeBreakFlag && <span className="ps-0">*</span>}
+      <div className="d-inline-block text-end pe-2" style={{ width: "2.5rem" }}>
+        {taskData?.break.takeBreakFlag && <span>*</span>}
         {taskData?.id}.
       </div>
-      <div
-        className="w-100 d-flex align-items-center justify-content-between"
-        onClick={() => handleClick(taskData)}
-      >
-        <span>
-          {taskData?.taskName}
-          <span className="ms-1" style={{ fontSize: "0.75rem" }}>
-            ({taskData?.taskDamage} damage)
-          </span>
-        </span>
-      </div>
-      <EllipsisIcon data={data}/>
-    </div>
+
+      <Row className="w-100 " onClick={() => handleClick(taskData)} style={strikeThroughStyle}>
+        <Col xs={12} lg={7}>
+          <div>{taskData?.taskName}</div>
+        </Col>
+        <Col xs={0} md={12} lg={5} className="d-none d-md-flex">
+          <div style={{ fontSize: "0.75rem" }}>
+            ({taskData?.taskDamage}
+            <span className="ms-1">damage</span>)
+          </div>
+        </Col>
+      </Row>
+      <EllipsisIcon setFocus={setFocus} handleShow={handleShow} data={data} />
+    </Stack>
   );
 };
 

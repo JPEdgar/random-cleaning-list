@@ -4,7 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
-const SkullIcon = ({ data }) => {
+const SkullIcon = ({ setFocus, handleShow, data }) => {
   const [modalShow, setModalShow] = useState(false);
 
   const breakFlag = data?.break?.takeBreakFlag;
