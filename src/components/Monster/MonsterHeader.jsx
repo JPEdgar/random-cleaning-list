@@ -4,7 +4,7 @@ import { Image, Row } from "react-bootstrap";
 
 import { useMonsterDetails } from "../../hooks";
 
-const Monster = () => {
+const MonsterHeader = () => {
   const { monsterDetails } = useMonsterDetails();
 
   return (
@@ -19,11 +19,10 @@ const Monster = () => {
           // }
           src="https://picsum.photos/200"
         />
-        <h1 className="text-center">{monsterDetails.name}</h1>
-        <h3 className="text-center">{monsterDetails.hp}</h3>
+        <h2 className="text-center">{monsterDetails.name} <span className="fs-5">({monsterDetails.maxHP} hp)</span></h2>
       </Row>
     </>
   );
 };
 
-export default Monster;
+export default MonsterHeader;
