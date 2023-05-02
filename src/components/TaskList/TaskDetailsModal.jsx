@@ -96,7 +96,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
     }
   }, [editFlag]);
 
-  useEffect(() => { console.log(data); }, [data]);
+  // useEffect(() => { console.log(data); }, [data]);
 
   return (
     <>

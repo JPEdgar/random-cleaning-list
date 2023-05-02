@@ -1,13 +1,11 @@
 import React, { createContext, useReducer, useEffect, useState } from "react";
 
-import initializeTaskList from "../constants/initializations/initializeTaskList";
-
 import { taskReducer } from "../reducers";
 
 const TaskContext = createContext();
 
 const TaskProvider = ({ children }) => {
-  const [taskState, dispatch] = useReducer(taskReducer, initializeTaskList());
+  const [taskState, dispatch] = useReducer(taskReducer, {incrementor: 0, taskList: []});
   const [critFlag, setCritFlag] = useState(false);
   const [editFlag, setEditFlag] = useState(false);
 

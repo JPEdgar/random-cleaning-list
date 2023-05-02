@@ -45,10 +45,10 @@ const TaskList = () => {
       {!showAlert && (
         <Row>
           <Col xs={{ span: 4, offset: 2 }}>
-            {taskList.map( (task, index) => index < 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
+            {taskList.taskList.map( (task, index) => index < 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
           </Col>
           <Col xs={{ span: 4, offset: -2 }}>
-            {taskList.map( (task, index) => index >= 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
+            {taskList.taskList.map( (task, index) => index >= 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
           </Col>
         </Row>
       )}
