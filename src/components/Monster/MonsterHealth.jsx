@@ -5,7 +5,7 @@ import { ProgressBar } from "react-bootstrap";
 import SkullIcon from "../elements/SkullIcon";
 import { useMonsterDetails } from "../../hooks";
 
-const MonsterHealth = () => {
+const MonsterHealth = ({ initialDamage = 0 }) => {
   const { monsterDetails } = useMonsterDetails();
 
   return (
@@ -15,13 +15,14 @@ const MonsterHealth = () => {
       </div>
       <div className="w-100">
         <span>
-          HP: {monsterDetails.maxHP - monsterDetails.currentDamage} /
-          {monsterDetails.maxHP}
+          HP:{" "}
+          {monsterDetails.maxHP - monsterDetails.currentDamage - initialDamage}{" "}
+          /{monsterDetails.maxHP}
         </span>
         <ProgressBar
           animated
           max={monsterDetails.maxHP}
-          now={monsterDetails.currentDamage}
+          now={monsterDetails.currentDamage + initialDamage}
         />
       </div>
     </div>

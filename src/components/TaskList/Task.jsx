@@ -12,16 +12,20 @@ const Task = ({ data, handleShow, setFocus }) => {
     lineHeight: "0.9rem",
     borderRadius: "5px",
     height: "2.25rem",
-    border: "solid 1px rgb(200,200,200)"
+    border: "solid 1px rgb(200,200,200)",
   };
 
   const strikeThroughStyle = {
     textDecoration: taskData?.completed ? "line-through" : "",
   };
 
-  const handleMouseEnter = () => { setHoverFlag(true); };
+  const handleMouseEnter = () => {
+    setHoverFlag(true);
+  };
 
-  const handleMouseExit = () => { setHoverFlag(false); };
+  const handleMouseExit = () => {
+    setHoverFlag(false);
+  };
 
   const handleClick = (taskData) => {
     setFocus(taskData);
@@ -39,7 +43,14 @@ const Task = ({ data, handleShow, setFocus }) => {
   }, [data]);
 
   return (
-    <Stack direction="horizontal" className="my-1" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit} onClick={() => handleClick(taskData)} style={style} >
+    <Stack
+      direction="horizontal"
+      className="my-1"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseExit}
+      onClick={() => handleClick(taskData)}
+      style={style}
+    >
       <div className="d-inline-block text-end pe-2" style={{ width: "2.5rem" }}>
         {taskData?.break.takeBreakFlag && <span>*</span>}
         {taskData?.id}.

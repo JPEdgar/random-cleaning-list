@@ -14,13 +14,15 @@ const TaskList = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const handleClose = () => {
-    setEditFlag(false)
+    setEditFlag(false);
     setShow(false);
   };
 
   const handleShow = () => setShow(true);
 
-  const hideAlert = () => { setShowAlert(false); };
+  const hideAlert = () => {
+    setShowAlert(false);
+  };
 
   useEffect(() => {
     if (monsterDetails.currentDamage >= monsterDetails.maxHP)
@@ -29,7 +31,12 @@ const TaskList = () => {
 
   return (
     <div style={{ border: critFlag ? "5px solid red" : "" }} className="p-1">
-      <TaskDetailsModal show={show} handleClose={() => handleClose()} handleShow={() => handleShow()} focus={focus} />
+      <TaskDetailsModal
+        show={show}
+        handleClose={() => handleClose()}
+        handleShow={() => handleShow()}
+        focus={focus}
+      />
 
       {showAlert && (
         <Alert variant="warning">
@@ -45,10 +52,30 @@ const TaskList = () => {
       {!showAlert && (
         <Row>
           <Col xs={{ span: 4, offset: 2 }}>
-            {taskList.taskList.map( (task, index) => index < 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
+            {taskList.map(
+              (task, index) =>
+                index < 10 && (
+                  <Task
+                    key={`task-${task.id}`}
+                    data={task}
+                    handleShow={handleShow}
+                    setFocus={setFocus}
+                  />
+                )
+            )}
           </Col>
           <Col xs={{ span: 4, offset: -2 }}>
-            {taskList.taskList.map( (task, index) => index >= 10 && ( <Task key={`task-${task.id}`} data={task} handleShow={handleShow} setFocus={setFocus} /> ) )}
+            {taskList.map(
+              (task, index) =>
+                index >= 10 && (
+                  <Task
+                    key={`task-${task.id}`}
+                    data={task}
+                    handleShow={handleShow}
+                    setFocus={setFocus}
+                  />
+                )
+            )}
           </Col>
         </Row>
       )}
