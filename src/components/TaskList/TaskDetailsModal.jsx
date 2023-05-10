@@ -12,7 +12,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
     setEditFlag,
     activateCrit,
     toggleTaskCompletion,
-    updateTask,
+    updateTask, editTask
   } = useTaskDetails();
 
   const [editData, setEditData] = useState(focus);
@@ -50,7 +50,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
   };
 
   const saveEditData = () => {
-    updateTask(editData);
+    editTask(editData);
     setModalData(editData);
     setEditFlag(false);
   };

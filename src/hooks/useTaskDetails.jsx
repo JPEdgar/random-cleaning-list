@@ -43,6 +43,12 @@ const useTaskDetails = () => {
       setCritFlag(true);
    };
 
+   const editTask = async (data) => {
+      console.log(data)
+      await updateTask(data)
+      taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: data });
+   }
+
    return {
       tasklist,
       toggleTaskCompletion,
@@ -51,7 +57,7 @@ const useTaskDetails = () => {
       editFlag,
       setEditFlag,
       initialDamage,
-      setInitialDamage,
+      setInitialDamage, editTask
    };
 };
 
