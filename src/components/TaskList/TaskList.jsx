@@ -4,13 +4,14 @@ import { Row, Col, Alert, Button } from "react-bootstrap";
 
 import Task from "./Task";
 import TaskDetailsModal from "./TaskDetailsModal";
+import EditTasklistModal from "./EditTasklistModal";
 import { useTaskDetails, useMonsterDetails } from "../../hooks";
 
-const Tasklist = () => {
+const Tasklist = ({ modalType, setModalType, setShow, show }) => {
    const { tasklist, critFlag, setEditFlag } = useTaskDetails();
    const { monsterDetails } = useMonsterDetails();
    const [focus, setFocus] = useState({});
-   const [show, setShow] = useState(false);
+
    const [showAlert, setShowAlert] = useState(false);
 
    const handleClose = () => {
@@ -18,7 +19,10 @@ const Tasklist = () => {
       setShow(false);
    };
 
-   const handleShow = () => setShow(true);
+   const handleShow = () => {
+     
+      setShow(true);
+   };
 
    const hideAlert = () => {
       setShowAlert(false);
@@ -31,12 +35,17 @@ const Tasklist = () => {
 
    return (
       <div style={{ border: critFlag ? "5px solid red" : "" }} className="p-1">
-         <TaskDetailsModal
-            show={show}
-            handleClose={() => handleClose()}
-            handleShow={() => handleShow()}
-            focus={focus}
-         />
+         {modalType === "Task" && (
+            <TaskDetailsModal
+               show={show}
+               handleClose={() => handleClose()}
+               focus={focus}
+            />
+         )}
+
+         {modalType === "Tasklist" && (
+            <EditTasklistModal show={show} handleClose={() => handleClose()} />
+         )}
 
          {showAlert && (
             <Alert variant="warning">
@@ -63,7 +72,7 @@ const Tasklist = () => {
                               data={task}
                               handleShow={handleShow}
                               setFocus={setFocus}
-                           />
+                              setModalType={setModalType}                           />
                         )
                   )}
                </Col>
@@ -75,7 +84,7 @@ const Tasklist = () => {
                               key={`task-${task.id}`}
                               data={task}
                               handleShow={handleShow}
-                              setFocus={setFocus}
+                              setFocus={setFocus} setModalType={setModalType} 
                            />
                         )
                   )}

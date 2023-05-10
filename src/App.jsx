@@ -12,6 +12,8 @@ import { useTaskDetails } from "./hooks";
 const App = () => {
    const { tasklist, initialDamage } = useTaskDetails();
    const [initialBossDamage, setInitialBossDamage] = useState(0);
+   const [modalType, setModalType] = useState("Task")
+   const [show, setShow] = useState(false);
 
    useEffect(() => {
       if (initialDamage.hasInitialDamage)
@@ -23,9 +25,9 @@ const App = () => {
       <>
          <button onClick={() => console.log(tasklist)}>Log task list</button>
          <Container>
-            <Title />
+            <Title setModalType={setModalType} setShow={setShow}/>
             <MonsterHeader />
-            <Tasklist />
+            <Tasklist modalType={modalType} setModalType={setModalType} show={show} setShow={setShow}/>
             <MonsterHealth initialDamage={initialBossDamage} />
          </Container>
       </>
