@@ -17,9 +17,8 @@ const TaskProvider = ({ children }) => {
    const [initializationFlag, setInitializationFlag] = useState(false);
 
    useEffect(() => {
-      if (taskState.length > 0 && !initializationFlag) {
-         const setDamage = taskState
-            .map((x) => {
+      if (taskState.tasklist?.length > 0 && !initializationFlag) {
+         const setDamage = taskState.tasklist.map((x) => {
                let returnValue = 0;
                if (x.completed) {
                   if (x.critFlag) returnValue = x.taskDamage * 1.5;
