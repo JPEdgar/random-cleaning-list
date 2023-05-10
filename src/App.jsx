@@ -10,26 +10,26 @@ import Tasklist from "./components/Tasklist";
 import { useTaskDetails } from "./hooks";
 
 const App = () => {
-  const { tasklist, initialDamage } = useTaskDetails();
-  const [initialBossDamage, setInitialBossDamage] = useState(0);
+   const { tasklist, initialDamage } = useTaskDetails();
+   const [initialBossDamage, setInitialBossDamage] = useState(0);
 
-  useEffect(() => {
-    if (initialDamage.hasInitialDamage)
-      setInitialBossDamage(initialDamage.damage);
-    else setInitialBossDamage(0);
-  }, [initialDamage]);
+   useEffect(() => {
+      if (initialDamage.hasInitialDamage)
+         setInitialBossDamage(initialDamage.damage);
+      else setInitialBossDamage(0);
+   }, [initialDamage]);
 
-  return (
-    <>
-      <button onClick={() => console.log(tasklist)}>Log task list</button>
-      <Container>
-        <Title />
-        <MonsterHeader />
-        <Tasklist />
-        <MonsterHealth initialDamage={initialBossDamage} />
-      </Container>
-    </>
-  );
+   return (
+      <>
+         <button onClick={() => console.log(tasklist)}>Log task list</button>
+         <Container>
+            <Title />
+            <MonsterHeader />
+            <Tasklist />
+            <MonsterHealth initialDamage={initialBossDamage} />
+         </Container>
+      </>
+   );
 };
 
 export default App;
