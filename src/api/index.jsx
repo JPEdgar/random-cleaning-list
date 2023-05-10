@@ -1,6 +1,5 @@
 /*
-state:
-{
+state: {
   incriment: Number
   tasklist: [{
     "id": Number,
@@ -23,7 +22,7 @@ state:
       "modifier": Number 
     }
   }],
-  monster:   {
+  monster: {
     "id": Number,
     "name": String,
     "maxHP": Number,
@@ -54,15 +53,25 @@ const getTasklist = async (token = "") =>
 // const createNewTasklist = async (token = "") => axios.post(tasklistURL, { headers: { Authorization: `bearer ${token}` } });
 const createNewTasklist = async (token = "") => {
    const newTasklist = await initializeTasklist();
-   localStorage.setItem( STORAGE_NAME, JSON.stringify({ tasklist: newTasklist, incrementor: newTasklist.length }) );
+   localStorage.setItem(
+      STORAGE_NAME,
+      JSON.stringify({ tasklist: newTasklist, incrementor: newTasklist.length })
+   );
    return { tasklist: newTasklist, incrementor: newTasklist.length };
 };
+
+// const updateTask = async (task = {}, token = "") => axios.patch(`${tasklistURL}/update-task`, { headers: { Authorization: `bearer ${token}` }, data: task, });
 const updateTask = async (task = {}, token = "") => {
-   // const tasklist = getTasklist()
-   // const updatedTasklist = tasklist.map(x => x.id === task.id ? task : x)
+   const tasklistState = await getTasklist();
+   const newTasklist = tasklistState.tasklist.map((x) =>
+      x.id === task.id ? task : x
+   );
+   const newState = { ...tasklistState, tasklist: newTasklist };
+   localStorage.setItem(STORAGE_NAME, JSON.stringify(newState));
+   return newState;
 };
 
-export { getTasklist, createNewTasklist };
+export { getTasklist, createNewTasklist, updateTask };
 
 // const createNewTaskList = async (tasklist = [], token = "") => axios.post(tasklistURL, { headers: { Authorization: `bearer ${token}` }, data: tasklist, });
 // const deleteTasklist = async (token = "") => axios.delete(tasklistURL, { headers: { Authorization: `bearer ${token}` } });
@@ -71,7 +80,6 @@ export { getTasklist, createNewTasklist };
 // const getTask = async (query = "", token = "") => axios.get(`${tasklistURL}/get-task`, { params: query, headers: { Authorization: `bearer ${token}` }, });
 // const deleteTask = async (taskID = "", token = "") => axios.delete(`${tasklistURL}/delete-task`, { headers: { Authorization: `bearer ${token}` }, data: { taskID }, });
 // const createTask = async (task = {}, token = "") => axios.patch(`${tasklistURL}/create-task`, { headers: { Authorization: `bearer ${token}` }, data: task, });
-// const updateTask = async (task = {}, token = "") => axios.patch(`${tasklistURL}/update-task`, { headers: { Authorization: `bearer ${token}` }, data: task, });
 
 //   createNewTaskList,
 //   deleteTasklist,

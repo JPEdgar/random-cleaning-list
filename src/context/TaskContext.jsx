@@ -10,7 +10,6 @@ const TaskProvider = ({ children }) => {
    const [taskState, dispatch] = useReducer(taskReducer, {});
    const [critFlag, setCritFlag] = useState(false);
    const [editFlag, setEditFlag] = useState(false);
-   //  const [incrementor, setIncrementor] = useState(-1);
    const [initialDamage, setInitialDamage] = useState({
       damage: 0,
       hasInitialDamage: false,
@@ -34,8 +33,6 @@ const TaskProvider = ({ children }) => {
             setInitialDamage({ damage: setDamage, hasInitialDamage: true });
          setInitializationFlag(true);
       }
-
-      console.log("taskState = ", taskState);
    }, [taskState]);
 
    useEffect(() => {
@@ -53,8 +50,7 @@ const TaskProvider = ({ children }) => {
          }
          dispatch({ type: TASK_TYPES.SET_TASKLIST, payload: returnState });
       };
-       InitializeState();
-     
+      InitializeState();
    }, []);
 
    return (
@@ -66,8 +62,6 @@ const TaskProvider = ({ children }) => {
             setCritFlag,
             editFlag,
             setEditFlag,
-            // incrementor,
-            // setIncrementor,
             initialDamage,
             setInitialDamage,
          }}

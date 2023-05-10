@@ -18,4 +18,13 @@ const createNewTasklist = async (token) => {
   }
 };
 
-export { getTasklist, createNewTasklist };
+const updateTask = async (updatedTask, token) => {
+  try {
+    const data = await api.updateTask(updatedTask, token)
+    return data
+  } catch (error) {
+    return error.response.data
+  }
+}
+
+export { getTasklist, createNewTasklist, updateTask };
