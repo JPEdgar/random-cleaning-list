@@ -1,6 +1,6 @@
 const TASK_TYPES = {
   TOGGLE_COMPLETED: "toggle-completed",
-  SET_TASK_LIST: "set-task-list",
+  SET_TASKLIST: "set-tasklist",
   UPDATE_TASK: "update-task",
 };
 

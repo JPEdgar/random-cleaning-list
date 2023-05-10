@@ -5,12 +5,12 @@ import { Container } from "react-bootstrap";
 import Title from "./components/Title";
 import MonsterHeader from "./components/Monster/MonsterHeader";
 import MonsterHealth from "./components/Monster/MonsterHealth";
-import TaskList from "./components/TaskList";
+import Tasklist from "./components/Tasklist";
 
 import { useTaskDetails } from "./hooks";
 
 const App = () => {
-  const { taskList, initialDamage } = useTaskDetails();
+  const { tasklist, initialDamage } = useTaskDetails();
   const [initialBossDamage, setInitialBossDamage] = useState(0);
 
   useEffect(() => {
@@ -21,11 +21,11 @@ const App = () => {
 
   return (
     <>
-      <button onClick={() => console.log(taskList)}>Log task list</button>
+      <button onClick={() => console.log(tasklist)}>Log task list</button>
       <Container>
         <Title />
         <MonsterHeader />
-        <TaskList />
+        <Tasklist />
         <MonsterHealth initialDamage={initialBossDamage} />
       </Container>
     </>

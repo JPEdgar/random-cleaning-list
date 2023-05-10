@@ -9,10 +9,7 @@ const TaskProvider = ({ children }) => {
   const [critFlag, setCritFlag] = useState(false);
   const [editFlag, setEditFlag] = useState(false);
   const [incrementor, setIncrementor] = useState(-1);
-  const [initialDamage, setInitialDamage] = useState({
-    damage: 0,
-    hasInitialDamage: false,
-  });
+  const [initialDamage, setInitialDamage] = useState({ damage: 0, hasInitialDamage: false, });
   const [initializationFlag, setInitializationFlag] = useState(false);
 
   useEffect(() => {
@@ -28,8 +25,7 @@ const TaskProvider = ({ children }) => {
         })
         .reduce((total, num) => total + num);
 
-      if (setDamage > 0)
-        setInitialDamage({ damage: setDamage, hasInitialDamage: true });
+      if (setDamage > 0) setInitialDamage({ damage: setDamage, hasInitialDamage: true });
       setInitializationFlag(true);
     }
   }, [taskState]);

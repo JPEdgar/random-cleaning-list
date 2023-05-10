@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-import initializeTaskList from "../constants/initializations/initializeTaskList";
+// import initializeTasklist from "../constants/initializations/initializeTasklist";
 
 import useTaskContext from "./context/useTaskContext";
 import { useMonsterDetails } from "./";
 
 import { TASK_TYPES } from "../constants/types";
 
+import { getTasklist, createNewTasklist } from "../actions/tasklist";
+
 const useTaskDetails = () => {
   const {
-    taskState: taskList,
+    taskState: tasklist,
     dispatch: taskDispatch,
     critFlag,
     setCritFlag,
     editFlag,
     setEditFlag,
-    incrementor,
-    setIncrementor,
+    // incrementor,
+    // setIncrementor,
     initialDamage,
     setInitialDamage,
   } = useTaskContext();
@@ -38,62 +40,57 @@ const useTaskDetails = () => {
     taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: updatedData });
     setCritFlag(false);
 
-    const updatedTaskList = taskList.map((x) =>
+    const updatedTasklist = tasklist.map((x) =>
       data.id === x.id ? updatedData : x
     );
-    saveTaskList(updatedTaskList, incrementor);
+    // saveTasklist(updatedTasklist, incrementor);
   };
 
   const activateCrit = () => {
     setCritFlag(true);
   };
 
-  const createDefaultTaskList = () => {
-    return initializeTaskList();
+  const resetTasklist = () => {
+    const resetList = createNewTasklist();
+    saveTasklist(resetList.tasklist, resetList.incrementor);
   };
 
-  const resetTaskList = () => {
-    const resetList = createDefaultTaskList();
-    saveTaskList(resetList, resetList.length);
+  const saveTasklist = (tasklist, incrementor) => {
+    taskDispatch({
+      type: TASK_TYPES.SET_TASK_LIST,
+      payload: { tasklist, incrementor },
+    });
   };
 
-  const saveTaskList = (taskList, incrementor) => {
-    localStorage.setItem(
-      "d20-task-list",
-      JSON.stringify({ taskList, incrementor })
-    );
+  const loadTasklist = () => {
+    return getTasklist();
   };
 
-  const loadTaskList = () => {
-    const savedTaskList = localStorage.getItem("d20-task-list");
-    return JSON.parse(savedTaskList);
-  };
+  // const updateTask = (data) => {
+  //   taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: data });
+  //   const newTasklist = tasklist.map((x) => (data.id === x.id ? data : x));
+  //   saveTasklist(newTasklist, incrementor);
+  // };
 
-  const updateTask = (data) => {
-    taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: data });
-    const newTaskList = taskList.map((x) => (data.id === x.id ? data : x));
-    saveTaskList(newTaskList, incrementor);
-  };
-
-  const setTaskList = (taskList, incrementor) => {
-    taskDispatch({ type: TASK_TYPES.SET_TASK_LIST, payload: taskList });
-    setIncrementor(incrementor);
-  };
+  // const setTasklist = (tasklist, incrementor) => {
+  //   taskDispatch({ type: TASK_TYPES.SET_TASK_LIST, payload: tasklist });
+  //   setIncrementor(incrementor);
+  // };
 
   useEffect(() => {
-    const loadedTaskList = loadTaskList();
-    if (!loadedTaskList) resetTaskList();
-    else setTaskList(loadedTaskList.taskList, loadedTaskList.incrementor);
+    const loadedTasklist = loadTasklist();
+    if (!loadedTasklist) resetTasklist();
+    else saveTasklist(loadedTasklist.tasklist, loadedTasklist.incrementor);
   }, []);
 
   return {
-    taskList,
+    tasklist,
     toggleTaskCompletion,
     critFlag,
     activateCrit,
     editFlag,
     setEditFlag,
-    updateTask,
+    // updateTask,
     initialDamage,
     setInitialDamage,
   };

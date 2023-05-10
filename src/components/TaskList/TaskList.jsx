@@ -6,8 +6,8 @@ import Task from "./Task";
 import TaskDetailsModal from "./TaskDetailsModal";
 import { useTaskDetails, useMonsterDetails } from "../../hooks";
 
-const TaskList = () => {
-  const { taskList, critFlag, setEditFlag } = useTaskDetails();
+const Tasklist = () => {
+  const { tasklist, critFlag, setEditFlag } = useTaskDetails();
   const { monsterDetails } = useMonsterDetails();
   const [focus, setFocus] = useState({});
   const [show, setShow] = useState(false);
@@ -52,7 +52,7 @@ const TaskList = () => {
       {!showAlert && (
         <Row>
           <Col xs={{ span: 4, offset: 2 }}>
-            {taskList.map(
+            {tasklist.map(
               (task, index) =>
                 index < 10 && (
                   <Task
@@ -65,7 +65,7 @@ const TaskList = () => {
             )}
           </Col>
           <Col xs={{ span: 4, offset: -2 }}>
-            {taskList.map(
+            {tasklist.map(
               (task, index) =>
                 index >= 10 && (
                   <Task
@@ -83,4 +83,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default Tasklist;

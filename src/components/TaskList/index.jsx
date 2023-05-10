@@ -1,11 +1,11 @@
 import React from "react";
 
-import TaskList from "./TaskList";
+import Tasklist from "./Tasklist";
 
 const index = () => {
   return (
     <>
-      <TaskList />
+      <Tasklist />
     </>
   );
 };
