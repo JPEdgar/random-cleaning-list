@@ -71,7 +71,17 @@ const updateTask = async (task = {}, token = "") => {
    return newState;
 };
 
-export { getTasklist, createNewTasklist, updateTask };
+const deleteTask = async (taskID = -1, token = "") => {
+   const tasklistState = await getTasklist();
+   const newTasklist = tasklistState.tasklist.filter((x) => x.id !== taskID);
+   localStorage.setItem(
+      STORAGE_NAME,
+      JSON.stringify({ ...tasklistState, tasklist: newTasklist })
+   );
+   return newTasklist;
+};
+
+export { getTasklist, createNewTasklist, updateTask, deleteTask };
 
 // const createNewTaskList = async (tasklist = [], token = "") => axios.post(tasklistURL, { headers: { Authorization: `bearer ${token}` }, data: tasklist, });
 // const deleteTasklist = async (token = "") => axios.delete(tasklistURL, { headers: { Authorization: `bearer ${token}` } });

@@ -5,7 +5,10 @@ import { useMonsterDetails } from "./";
 
 import { TASK_TYPES } from "../constants/types";
 
-import { updateTask } from "../actions/tasklist";
+import {
+   updateTask,
+   deleteTask as deleteTaskAction,
+} from "../actions/tasklist";
 
 const useTaskDetails = () => {
    const {
@@ -44,10 +47,14 @@ const useTaskDetails = () => {
    };
 
    const editTask = async (data) => {
-      console.log(data)
-      await updateTask(data)
+      await updateTask(data);
       taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: data });
-   }
+   };
+
+   const deleteTask = async (id) => {
+      const newState = await deleteTaskAction(id);
+      taskDispatch({ type: TASK_TYPES.DELETE_TASK, payload: newState });
+   };
 
    return {
       tasklist,
@@ -57,7 +64,9 @@ const useTaskDetails = () => {
       editFlag,
       setEditFlag,
       initialDamage,
-      setInitialDamage, editTask
+      setInitialDamage,
+      editTask,
+      deleteTask,
    };
 };
 

@@ -10,8 +10,13 @@ const EditTasklistModal = ({ show, handleClose }) => {
          centered
          onSubmit={(e) => e.preventDefault()}
       >
-         <Modal.Header>...</Modal.Header>
-         
+         <Modal.Header>Edit Tasklist</Modal.Header>
+         <Modal.Body>Add a new task</Modal.Body>
+         <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+               Close
+            </Button>
+         </Modal.Footer>
       </Modal>
    );
 };

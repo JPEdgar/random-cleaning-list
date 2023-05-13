@@ -4,6 +4,7 @@ import { Button, Modal, Form, Row, Col, InputGroup } from "react-bootstrap";
 
 import CloseIcon from "../elements/CloseIcon";
 import EditIcon from "../elements/EditIcon";
+import TrashIcon from "../elements/TrashIcon";
 import { useTaskDetails } from "../../hooks";
 
 const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
@@ -12,7 +13,7 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
     setEditFlag,
     activateCrit,
     toggleTaskCompletion,
-    updateTask, editTask
+    updateTask, editTask, deleteTask
   } = useTaskDetails();
 
   const [editData, setEditData] = useState(focus);
@@ -55,6 +56,10 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
     setEditFlag(false);
   };
 
+  const handleDeleteTask = (id) => {
+    deleteTask(id)
+  }
+
   const getModifierValue = (value) => {
     return value > 0 ? `+${value}` : value < 0 ? value : 0;
   };
@@ -90,7 +95,12 @@ const TaskDetailsModal = ({ focus = {}, show, handleClose }) => {
           {!editFlag && <div>{modalData.taskName}</div>}
 
           <div className="d-flex">
-            {!modalData.completed && focus.id !== 20 && <EditIcon />}
+            {!modalData.completed && focus.id !== 20 && 
+            <div className="me-2 d-flex">
+            <EditIcon />
+            <TrashIcon task={modalData} deleteCommand={handleDeleteTask}  closeCommand={handleClose}/>
+            </div>
+            }
             <CloseIcon handleClose={handleClose} />
           </div>
         </Modal.Title>

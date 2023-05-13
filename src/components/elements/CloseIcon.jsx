@@ -21,7 +21,7 @@ const CloseIcon = ({ handleClose }) => {
   const style = {
     cursor: "pointer",
     fontSize: "1.5rem",
-    color: hoverFlag ? "red" : "gray",
+    color: hoverFlag ? "black" : "gray",
   };
 
   return (

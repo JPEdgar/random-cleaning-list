@@ -30,6 +30,11 @@ var taskReducer = function taskReducer() {
         tasklist: updatedTasklist
       });
 
+    case _types.TASK_TYPES.DELETE_TASK:
+      return _objectSpread({}, state, {
+        tasklist: action.payload
+      });
+
     default:
       return state;
   }
