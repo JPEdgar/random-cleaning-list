@@ -5,6 +5,7 @@ const getTasklist = async () => {
       const data = await api.getTasklist();
       return data;
    } catch (error) {
+      console.log(error.response.data);
       return error.response.data;
    }
 };
@@ -14,6 +15,7 @@ const createNewTasklist = async (token) => {
       const data = await api.createNewTasklist(token);
       return data;
    } catch (error) {
+      console.log(error.response.data);
       return error.response.data;
    }
 };
@@ -23,6 +25,7 @@ const updateTask = async (updatedTask, token) => {
       const data = await api.updateTask(updatedTask, token);
       return data;
    } catch (error) {
+      console.log(error.response.data);
       return error.response.data;
    }
 };
@@ -32,8 +35,19 @@ const deleteTask = async (taskID, token) => {
       const data = await api.deleteTask(taskID, token);
       return data;
    } catch (error) {
+      console.log(error.response.data);
       return error.response.data;
    }
 };
 
-export { getTasklist, createNewTasklist, updateTask, deleteTask };
+const addTask = async (task, token) => {
+   try {
+      const data = await api.addTask(task, token);
+      return data;
+   } catch (error) {
+      console.log(error.response.data);
+      return error.response.data;
+   }
+};
+
+export { getTasklist, createNewTasklist, updateTask, deleteTask, addTask };

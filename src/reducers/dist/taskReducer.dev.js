@@ -35,6 +35,12 @@ var taskReducer = function taskReducer() {
         tasklist: action.payload
       });
 
+    case _types.TASK_TYPES.ADD_TASK:
+      return _objectSpread({}, state, {
+        incrementor: state.incrementor++,
+        tasklist: action.payload
+      });
+
     default:
       return state;
   }

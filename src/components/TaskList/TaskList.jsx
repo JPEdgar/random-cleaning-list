@@ -5,6 +5,7 @@ import { Row, Col, Alert, Button } from "react-bootstrap";
 import Task from "./Task";
 import TaskDetailsModal from "./TaskDetailsModal";
 import EditTasklistModal from "./EditTasklistModal";
+import AddTaskModal from "./AddTaskModal";
 import { useTaskDetails, useMonsterDetails } from "../../hooks";
 
 const Tasklist = ({ modalType, setModalType, setShow, show }) => {
@@ -20,7 +21,6 @@ const Tasklist = ({ modalType, setModalType, setShow, show }) => {
    };
 
    const handleShow = () => {
-     
       setShow(true);
    };
 
@@ -44,9 +44,20 @@ const Tasklist = ({ modalType, setModalType, setShow, show }) => {
          )}
 
          {modalType === "Tasklist" && (
-            <EditTasklistModal show={show} handleClose={() => handleClose()} />
+            <EditTasklistModal
+               show={show}
+               handleClose={handleClose}
+               setModalType={setModalType}
+            />
          )}
 
+         {modalType === "Add-Task" && (
+            <AddTaskModal
+               show={show}
+               handleClose={handleClose}
+               setModalType={setModalType}
+            />
+         )}
          {showAlert && (
             <Alert variant="warning">
                <Alert.Heading>You've killed the chore monster!</Alert.Heading>
@@ -72,7 +83,8 @@ const Tasklist = ({ modalType, setModalType, setShow, show }) => {
                               data={task}
                               handleShow={handleShow}
                               setFocus={setFocus}
-                              setModalType={setModalType}                           />
+                              setModalType={setModalType}
+                           />
                         )
                   )}
                </Col>
@@ -84,7 +96,8 @@ const Tasklist = ({ modalType, setModalType, setShow, show }) => {
                               key={`task-${task.id}`}
                               data={task}
                               handleShow={handleShow}
-                              setFocus={setFocus} setModalType={setModalType} 
+                              setFocus={setFocus}
+                              setModalType={setModalType}
                            />
                         )
                   )}

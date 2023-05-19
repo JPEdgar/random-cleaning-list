@@ -8,6 +8,7 @@ import { TASK_TYPES } from "../constants/types";
 import {
    updateTask,
    deleteTask as deleteTaskAction,
+   addTask as addTaskAction,
 } from "../actions/tasklist";
 
 const useTaskDetails = () => {
@@ -56,6 +57,13 @@ const useTaskDetails = () => {
       taskDispatch({ type: TASK_TYPES.DELETE_TASK, payload: newState });
    };
 
+   const addTask = async (task) => {
+      // console.log(task)
+      const newState = await addTaskAction(task);
+      console.log(newState)
+      taskDispatch({type: TASK_TYPES.ADD_TASK, payload: newState})
+   };
+
    return {
       tasklist,
       toggleTaskCompletion,
@@ -67,6 +75,7 @@ const useTaskDetails = () => {
       setInitialDamage,
       editTask,
       deleteTask,
+      addTask,
    };
 };
 

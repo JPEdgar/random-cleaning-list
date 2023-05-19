@@ -2,7 +2,7 @@ import React from "react";
 
 import { Modal, Button } from "react-bootstrap";
 
-const EditTasklistModal = ({ show, handleClose }) => {
+const EditTasklistModal = ({ show, handleClose, setModalType }) => {
    return (
       <Modal
          show={show}
@@ -11,7 +11,7 @@ const EditTasklistModal = ({ show, handleClose }) => {
          onSubmit={(e) => e.preventDefault()}
       >
          <Modal.Header>Edit Tasklist</Modal.Header>
-         <Modal.Body>Add a new task</Modal.Body>
+         <Modal.Body><Button onClick={() => setModalType("Add-Task")}>Add Task</Button></Modal.Body>
          <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
                Close

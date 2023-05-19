@@ -10,8 +10,11 @@ const taskReducer = (state = {}, action) => {
             x.id === action.payload.id ? action.payload : x
          );
          return { ...state, tasklist: updatedTasklist };
-         case TASK_TYPES.DELETE_TASK:
-            return {...state, tasklist: action.payload}
+      case TASK_TYPES.DELETE_TASK:
+         return { ...state, tasklist: action.payload };
+      case TASK_TYPES.ADD_TASK:
+         return { ...state, incrementor: state.incrementor++, tasklist: action.payload };
+
       default:
          return state;
    }

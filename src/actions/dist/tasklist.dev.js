@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteTask = exports.updateTask = exports.createNewTasklist = exports.getTasklist = void 0;
+exports.addTask = exports.deleteTask = exports.updateTask = exports.createNewTasklist = exports.getTasklist = void 0;
 
 var api = _interopRequireWildcard(require("../api"));
 
@@ -30,9 +30,10 @@ var getTasklist = function getTasklist() {
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
+          console.log(_context.t0.response.data);
           return _context.abrupt("return", _context.t0.response.data);
 
-        case 10:
+        case 11:
         case "end":
           return _context.stop();
       }
@@ -59,9 +60,10 @@ var createNewTasklist = function createNewTasklist(token) {
         case 7:
           _context2.prev = 7;
           _context2.t0 = _context2["catch"](0);
+          console.log(_context2.t0.response.data);
           return _context2.abrupt("return", _context2.t0.response.data);
 
-        case 10:
+        case 11:
         case "end":
           return _context2.stop();
       }
@@ -88,9 +90,10 @@ var updateTask = function updateTask(updatedTask, token) {
         case 7:
           _context3.prev = 7;
           _context3.t0 = _context3["catch"](0);
+          console.log(_context3.t0.response.data);
           return _context3.abrupt("return", _context3.t0.response.data);
 
-        case 10:
+        case 11:
         case "end":
           return _context3.stop();
       }
@@ -117,9 +120,10 @@ var deleteTask = function deleteTask(taskID, token) {
         case 7:
           _context4.prev = 7;
           _context4.t0 = _context4["catch"](0);
+          console.log(_context4.t0.response.data);
           return _context4.abrupt("return", _context4.t0.response.data);
 
-        case 10:
+        case 11:
         case "end":
           return _context4.stop();
       }
@@ -128,3 +132,33 @@ var deleteTask = function deleteTask(taskID, token) {
 };
 
 exports.deleteTask = deleteTask;
+
+var addTask = function addTask(task, token) {
+  var data;
+  return regeneratorRuntime.async(function addTask$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.prev = 0;
+          _context5.next = 3;
+          return regeneratorRuntime.awrap(api.addTask(task, token));
+
+        case 3:
+          data = _context5.sent;
+          return _context5.abrupt("return", data);
+
+        case 7:
+          _context5.prev = 7;
+          _context5.t0 = _context5["catch"](0);
+          console.log(_context5.t0.response.data);
+          return _context5.abrupt("return", _context5.t0.response.data);
+
+        case 11:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  }, null, null, [[0, 7]]);
+};
+
+exports.addTask = addTask;
