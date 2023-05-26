@@ -1,3 +1,37 @@
+/*
+state: {
+  incriment: Number
+  tasklist: [{
+    "id": Number,
+    "taskName": String,
+    "details": String,
+    "taskDamage": Number,
+    "break": {
+      "takeBreakFlag": Boolean,
+      "multiplier": Number,
+      "numerical": Number,
+      "modifier": Number
+    },
+    "completed": Boolean,
+    "critFlag": Boolean,
+    "priority": Enum, // ["low, med, hi"]
+    "room": String,
+    "frequency": { 
+      "multiplier": Number, 
+      "numerical": Number, 
+      "modifier": Number 
+    }
+  }],
+  monster: {
+    "id": Number,
+    "name": String,
+    "maxHP": Number,
+    "image": String,
+    "dead": String"
+  }
+}
+*/
+
 // This file would hold all backend calls.
 // Since there is no backend, logic for "backend" will be done here.
 // Example axios call shown in a comment above function.
@@ -5,7 +39,7 @@
 
 // import axios from "axios";
 
-import initializeTasklist from "../constants/initializations/initializeTasklist";
+import initializeTasklist from "../constants/initializations/initializeTaskList";
 
 const STORAGE_NAME = "d20-tasklist";
 // const BASE_URL = "http://some-website.com/api";
@@ -14,17 +48,53 @@ const STORAGE_NAME = "d20-tasklist";
 // tasklist
 // const getTasklist = async (token = "") => axios.get(`${tasklistURL}/`, { headers: { Authorization: `bearer ${token}` }, });
 const getTasklist = async (token = "") =>
-  JSON.parse(localStorage.getItem(STORAGE_NAME));
+   await JSON.parse(localStorage.getItem(STORAGE_NAME));
 
 // const createNewTasklist = async (token = "") => axios.post(tasklistURL, { headers: { Authorization: `bearer ${token}` } });
 const createNewTasklist = async (token = "") => {
-  const newTasklist = initializeTasklist();
-  localStorage.setItem(
-    "d20-task-list",
-    JSON.stringify({ tasklist: newTasklist, incrementor: newTasklist.length })
-  );
-  return { tasklist: newTasklist, incrementor: newTasklist.length };
+   const newTasklist = await initializeTasklist();
+   localStorage.setItem(
+      STORAGE_NAME,
+      JSON.stringify({ tasklist: newTasklist, incrementor: newTasklist.length })
+   );
+   return { tasklist: newTasklist, incrementor: newTasklist.length };
 };
+
+// const updateTask = async (task = {}, token = "") => axios.patch(`${tasklistURL}/update-task`, { headers: { Authorization: `bearer ${token}` }, data: task, });
+const updateTask = async (task = {}, token = "") => {
+   const tasklistState = await getTasklist();
+   const newTasklist = tasklistState.tasklist.map((x) =>
+      x.id === task.id ? task : x
+   );
+   const newState = { ...tasklistState, tasklist: newTasklist };
+   localStorage.setItem(STORAGE_NAME, JSON.stringify(newState));
+   return newState;
+};
+
+const deleteTask = async (taskID = -1, token = "") => {
+   const tasklistState = await getTasklist();
+   const newTasklist = tasklistState.tasklist.filter((x) => x.id !== taskID);
+   localStorage.setItem(
+      STORAGE_NAME,
+      JSON.stringify({ ...tasklistState, tasklist: newTasklist })
+   );
+   return newTasklist;
+};
+
+const addTask = async (task = {}, token = "") => {
+   const tasklistState = await getTasklist();
+   console.log("tasklistState = ", tasklistState)
+   const newInc = tasklistState.incrementor + 1
+   const tempTask = {...task, id: newInc}
+   const tempNewList = tasklistState.tasklist
+   tempNewList.push(tempTask)
+   const newTasklist = {...tasklistState, incrementor: newInc, tasklist: tempNewList }
+   localStorage.setItem(STORAGE_NAME, JSON.stringify(newTasklist))
+   return newTasklist
+   // console.log(newTasklist)
+};
+
+export { getTasklist, createNewTasklist, updateTask, deleteTask, addTask };
 
 // const createNewTaskList = async (tasklist = [], token = "") => axios.post(tasklistURL, { headers: { Authorization: `bearer ${token}` }, data: tasklist, });
 // const deleteTasklist = async (token = "") => axios.delete(tasklistURL, { headers: { Authorization: `bearer ${token}` } });
@@ -33,19 +103,10 @@ const createNewTasklist = async (token = "") => {
 // const getTask = async (query = "", token = "") => axios.get(`${tasklistURL}/get-task`, { params: query, headers: { Authorization: `bearer ${token}` }, });
 // const deleteTask = async (taskID = "", token = "") => axios.delete(`${tasklistURL}/delete-task`, { headers: { Authorization: `bearer ${token}` }, data: { taskID }, });
 // const createTask = async (task = {}, token = "") => axios.patch(`${tasklistURL}/create-task`, { headers: { Authorization: `bearer ${token}` }, data: task, });
-// const updateTask = async (task = {}, token = "") => axios.patch(`${tasklistURL}/update-task`, { headers: { Authorization: `bearer ${token}` }, data: task, });
-const updateTask = async (task = {}, token = "") => {
-  // const tasklist = getTasklist()
-  // const updatedTasklist = tasklist.map(x => x.id === task.id ? task : x)
-}
 
-export {
-  getTasklist,
-  createNewTasklist,
-  //   createNewTaskList,
-  //   deleteTasklist,
-  //   getTask,
-  //   deleteTask,
-  //   updateTask,
-  //   createTask,
-};
+//   createNewTaskList,
+//   deleteTasklist,
+//   getTask,
+//   deleteTask,
+//   updateTask,
+//   createTask,

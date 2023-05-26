@@ -13,7 +13,8 @@ const D20TasklistProvider = ({ children }) => {
     const initializeTasklistData = async () => {
       const data = await getAllData();
 
-      if (!data) dispatch({ type: MASTER_TYPES.INITIALIZE });
+      if (!data) dispatch({ type: MASTER_TYPES.INITIALIZE_MASTER_LIST });
+      else dispatch({ type: MASTER_TYPES.SET_MASTER_LIST, payload: data });
     };
 
     initializeTasklistData();

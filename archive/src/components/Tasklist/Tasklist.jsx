@@ -4,83 +4,108 @@ import { Row, Col, Alert, Button } from "react-bootstrap";
 
 import Task from "./Task";
 import TaskDetailsModal from "./TaskDetailsModal";
+import EditTasklistModal from "./EditTasklistModal";
+import AddTaskModal from "./AddTaskModal";
 import { useTaskDetails, useMonsterDetails } from "../../hooks";
 
-const Tasklist = () => {
-  const { tasklist, critFlag, setEditFlag } = useTaskDetails();
-  const { monsterDetails } = useMonsterDetails();
-  const [focus, setFocus] = useState({});
-  const [show, setShow] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+const Tasklist = ({ modalType, setModalType, setShow, show }) => {
+   const { tasklist, critFlag, setEditFlag } = useTaskDetails();
+   const { monsterDetails } = useMonsterDetails();
+   const [focus, setFocus] = useState({});
 
-  const handleClose = () => {
-    setEditFlag(false);
-    setShow(false);
-  };
+   const [showAlert, setShowAlert] = useState(false);
 
-  const handleShow = () => setShow(true);
+   const handleClose = () => {
+      setEditFlag(false);
+      setShow(false);
+   };
 
-  const hideAlert = () => {
-    setShowAlert(false);
-  };
+   const handleShow = () => {
+      setShow(true);
+   };
 
-  useEffect(() => {
-    if (monsterDetails.currentDamage >= monsterDetails.maxHP)
-      setShowAlert(true);
-  }, [monsterDetails]);
+   const hideAlert = () => {
+      setShowAlert(false);
+   };
 
-  return (
-    <div style={{ border: critFlag ? "5px solid red" : "" }} className="p-1">
-      <TaskDetailsModal
-        show={show}
-        handleClose={() => handleClose()}
-        handleShow={() => handleShow()}
-        focus={focus}
-      />
+   useEffect(() => {
+      if (monsterDetails.currentDamage >= monsterDetails.maxHP)
+         setShowAlert(true);
+   }, [monsterDetails]);
 
-      {showAlert && (
-        <Alert variant="warning">
-          <Alert.Heading>You've killed the chore monster!</Alert.Heading>
-          <p>You're done for the day. Take it easy. Relax. You've earned it.</p>
-          <hr />
-          <p className="mb-0">
-            <Button onClick={() => hideAlert()}>Continue</Button>
-          </p>
-        </Alert>
-      )}
+   return (
+      <div style={{ border: critFlag ? "5px solid red" : "" }} className="p-1">
+         {modalType === "Task" && (
+            <TaskDetailsModal
+               show={show}
+               handleClose={() => handleClose()}
+               focus={focus}
+            />
+         )}
 
-      {!showAlert && (
-        <Row>
-          <Col xs={{ span: 4, offset: 2 }}>
-            {tasklist.map(
-              (task, index) =>
-                index < 10 && (
-                  <Task
-                    key={`task-${task.id}`}
-                    data={task}
-                    handleShow={handleShow}
-                    setFocus={setFocus}
-                  />
-                )
-            )}
-          </Col>
-          <Col xs={{ span: 4, offset: -2 }}>
-            {tasklist.map(
-              (task, index) =>
-                index >= 10 && (
-                  <Task
-                    key={`task-${task.id}`}
-                    data={task}
-                    handleShow={handleShow}
-                    setFocus={setFocus}
-                  />
-                )
-            )}
-          </Col>
-        </Row>
-      )}
-    </div>
-  );
+         {modalType === "Tasklist" && (
+            <EditTasklistModal
+               show={show}
+               handleClose={handleClose}
+               setModalType={setModalType}
+            />
+         )}
+
+         {modalType === "Add-Task" && (
+            <AddTaskModal
+               show={show}
+               handleClose={handleClose}
+               setModalType={setModalType}
+            />
+         )}
+         {showAlert && (
+            <Alert variant="warning">
+               <Alert.Heading>You've killed the chore monster!</Alert.Heading>
+               <p>
+                  You're done for the day. Take it easy. Relax. You've earned
+                  it.
+               </p>
+               <hr />
+               <p className="mb-0">
+                  <Button onClick={() => hideAlert()}>Continue</Button>
+               </p>
+            </Alert>
+         )}
+
+         {!showAlert && (
+            <Row>
+               <Col xs={{ span: 4, offset: 2 }}>
+                  {tasklist?.tasklist?.map(
+                     (task, index) =>
+                        index < 10 && (
+                           <Task
+                              key={`task-${task.id}`}
+                              data={task}
+                              handleShow={handleShow}
+                              setFocus={setFocus}
+                              setModalType={setModalType}
+                           />
+                        )
+                  )}
+               </Col>
+               <Col xs={{ span: 4, offset: -2 }}>
+                  {tasklist?.tasklist?.map(
+                     (task, index) =>
+                        index >= 10 && (
+                           <Task
+                              key={`task-${task.id}`}
+                              data={task}
+                              handleShow={handleShow}
+                              setFocus={setFocus}
+                              setModalType={setModalType}
+                           />
+                        )
+                  )}
+               </Col>
+            </Row>
+         )}
+      </div>
+   );
 };
 
 export default Tasklist;

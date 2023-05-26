@@ -1,99 +1,82 @@
 import React, { useState, useEffect } from "react";
 
-// import initializeTasklist from "../constants/initializations/initializeTasklist";
-
 import useTaskContext from "./context/useTaskContext";
 import { useMonsterDetails } from "./";
 
 import { TASK_TYPES } from "../constants/types";
 
-import { getTasklist, createNewTasklist } from "../actions/tasklist";
+import {
+   updateTask,
+   deleteTask as deleteTaskAction,
+   addTask as addTaskAction,
+} from "../actions/tasklist";
 
 const useTaskDetails = () => {
-  const {
-    taskState: tasklist,
-    dispatch: taskDispatch,
-    critFlag,
-    setCritFlag,
-    editFlag,
-    setEditFlag,
-    // incrementor,
-    // setIncrementor,
-    initialDamage,
-    setInitialDamage,
-  } = useTaskContext();
+   const {
+      taskState: tasklist,
+      dispatch: taskDispatch,
+      critFlag,
+      setCritFlag,
+      editFlag,
+      setEditFlag,
+      initialDamage,
+      setInitialDamage,
+   } = useTaskContext();
 
-  const { damageMonster, healMonster } = useMonsterDetails();
+   const { damageMonster, healMonster } = useMonsterDetails();
 
-  const toggleTaskCompletion = (data) => {
-    let updatedData;
+   const toggleTaskCompletion = async (data) => {
+      let updatedData;
 
-    if (data.completed) {
-      updatedData = { ...data, completed: false };
-      healMonster(updatedData.taskDamage, data.critFlag);
-    } else if (!data.completed && data.taskDamage > 0) {
-      const tempCritFlag = critFlag;
-      updatedData = { ...data, completed: true, critFlag: critFlag };
-      damageMonster(updatedData.taskDamage, tempCritFlag);
-    }
+      if (data.completed) {
+         updatedData = { ...data, completed: false };
+         healMonster(updatedData.taskDamage, data.critFlag);
+      } else if (!data.completed && data.taskDamage > 0) {
+         const tempCritFlag = critFlag;
+         updatedData = { ...data, completed: true, critFlag: critFlag };
+         damageMonster(updatedData.taskDamage, tempCritFlag);
+      }
 
-    taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: updatedData });
-    setCritFlag(false);
+      taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: updatedData });
+      setCritFlag(false);
 
-    const updatedTasklist = tasklist.map((x) =>
-      data.id === x.id ? updatedData : x
-    );
-    // saveTasklist(updatedTasklist, incrementor);
-  };
+      await updateTask(updatedData);
+   };
 
-  const activateCrit = () => {
-    setCritFlag(true);
-  };
+   const activateCrit = () => {
+      setCritFlag(true);
+   };
 
-  const resetTasklist = () => {
-    const resetList = createNewTasklist();
-    saveTasklist(resetList.tasklist, resetList.incrementor);
-  };
+   const editTask = async (data) => {
+      await updateTask(data);
+      taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: data });
+   };
 
-  const saveTasklist = (tasklist, incrementor) => {
-    taskDispatch({
-      type: TASK_TYPES.SET_TASK_LIST,
-      payload: { tasklist, incrementor },
-    });
-  };
+   const deleteTask = async (id) => {
+      const newState = await deleteTaskAction(id);
+      taskDispatch({ type: TASK_TYPES.DELETE_TASK, payload: newState });
+   };
 
-  const loadTasklist = () => {
-    return getTasklist();
-  };
+   const addTask = async (task) => {
+      // console.log(task)
+      const newState = await addTaskAction(task);
+      console.log(newState)
+      taskDispatch({type: TASK_TYPES.ADD_TASK, payload: newState})
+   };
 
-  // const updateTask = (data) => {
-  //   taskDispatch({ type: TASK_TYPES.UPDATE_TASK, payload: data });
-  //   const newTasklist = tasklist.map((x) => (data.id === x.id ? data : x));
-  //   saveTasklist(newTasklist, incrementor);
-  // };
-
-  // const setTasklist = (tasklist, incrementor) => {
-  //   taskDispatch({ type: TASK_TYPES.SET_TASK_LIST, payload: tasklist });
-  //   setIncrementor(incrementor);
-  // };
-
-  useEffect(() => {
-    const loadedTasklist = loadTasklist();
-    if (!loadedTasklist) resetTasklist();
-    else saveTasklist(loadedTasklist.tasklist, loadedTasklist.incrementor);
-  }, []);
-
-  return {
-    tasklist,
-    toggleTaskCompletion,
-    critFlag,
-    activateCrit,
-    editFlag,
-    setEditFlag,
-    // updateTask,
-    initialDamage,
-    setInitialDamage,
-  };
+   return {
+      tasklist,
+      toggleTaskCompletion,
+      critFlag,
+      activateCrit,
+      editFlag,
+      setEditFlag,
+      initialDamage,
+      setInitialDamage,
+      editTask,
+      deleteTask,
+      addTask,
+   };
 };
 
 export default useTaskDetails;
