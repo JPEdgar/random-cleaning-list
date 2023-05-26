@@ -5,10 +5,20 @@
 
 // import axios from "axios";
 
-import initializeTasklist from "../constants/initializations/initializeTasklist";
+// import initializeTasklist from "../constants/initializations/initializeTasklist";
 
-const STORAGE_NAME = "d20-tasklist";
+const STORAGE_NAME = "d20-tasklist-data";
 // const BASE_URL = "http://some-website.com/api";
 // const tasklistURL = `${BASE_URL}/tasklist`;
 
-export {};
+const getAllData = async () => {
+    return await JSON.parse(localStorage.getItem(STORAGE_NAME));
+}
+
+const getMonsterList = async () => {
+    const data = await getAllData()
+    console.log("api data = ", data)
+    return data.monsterData
+}
+
+export {getAllData, getMonsterList};
