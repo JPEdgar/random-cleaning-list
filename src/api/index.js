@@ -12,13 +12,7 @@ const STORAGE_NAME = "d20-tasklist-data";
 // const tasklistURL = `${BASE_URL}/tasklist`;
 
 const getAllData = async () => {
-    return await JSON.parse(localStorage.getItem(STORAGE_NAME));
-}
+  return await JSON.parse(localStorage.getItem(STORAGE_NAME));
+};
 
-const getMonsterList = async () => {
-    const data = await getAllData()
-    console.log("api data = ", data)
-    return data.monsterData
-}
-
-export {getAllData, getMonsterList};
+export { getAllData };

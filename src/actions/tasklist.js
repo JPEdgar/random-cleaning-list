@@ -9,15 +9,4 @@ const getAllData = async () => {
   }
 };
 
-const getMonsterList = async () => {
-  try {
-    const data = await api.getMonsterList();
-    console.log("actions/tasklist > getMonsterList > data = ", data);
-    return data;
-  } catch (error) {
-    console.log("getMonsterList error");
-    return error;
-  }
-};
-
-export { getAllData, getMonsterList };
+export { getAllData };

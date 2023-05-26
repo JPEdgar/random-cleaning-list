@@ -1,18 +1,19 @@
-import { MONSTER_TYPES, MASTER_TYPES } from "../constants/types";
+import { MASTER_TYPES } from "../constants/types";
 
 import { initializeD20TasklistData } from "../constants/initializations";
 
 const d20TasklistReducer = (state = {}, action) => {
-  console.log("d20TasklistReducer => ", { state, action });
-
+  // console.log("d20TasklistReducer => ", { state, action });
   switch (action.type) {
-    // master
-    case MASTER_TYPES.INITIALIZE:
+    // master switch
+    case MASTER_TYPES.INITIALIZE_MASTER_LIST:
       return initializeD20TasklistData();
+    case MASTER_TYPES.SET_MASTER_LIST:
+      return action.payload;
 
-    // monster
+    // monster switch
 
-    // tasklist
+    // tasklist switch
 
     // default
     default:
