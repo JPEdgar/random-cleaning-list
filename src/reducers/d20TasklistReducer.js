@@ -28,17 +28,18 @@ const d20TasklistReducer = (state = {}, action) => {
     case MONSTER_TYPES.DAMAGE_MONSTER:
       const damageMonster_state = state.monsterData;
       const damageMonster_activeMonster = damageMonster_state.activeMonster;
-      const damageMonster_currentDamage = damageMonster_state.activeMonster
-        .currentDamage
-        ? damageMonster_state.activeMonster.currentDamage
-        : 0;
-      damageMonster_activeMonster.currentDamage =
-        damageMonster_currentDamage + action.payload;
-      const damageMonster_newActiveMonster = {
-        ...damageMonster_state,
-        activeMonster: damageMonster_activeMonster,
-      };
+      const damageMonster_currentDamage = damageMonster_state.activeMonster.currentDamage ? damageMonster_state.activeMonster.currentDamage : 0;
+      damageMonster_activeMonster.currentDamage = damageMonster_currentDamage + action.payload;
+      const damageMonster_newActiveMonster = { ...damageMonster_state, activeMonster: damageMonster_activeMonster, };
       return { ...state, monsterData: damageMonster_newActiveMonster };
+
+      case MONSTER_TYPES.HEAL_MONSTER:
+        const healMonster_state = state.monsterData;
+        const healMonster_activeMonster = healMonster_state.activeMonster;
+        const healMonster_currentdamage = healMonster_state.activeMonster.currentDamage ? healMonster_state.activeMonster.currentDamage : 0;
+        healMonster_activeMonster.currentDamage = healMonster_currentdamage - action.payload >= 0 ? healMonster_currentdamage - action.payload : 0;
+        const healMonster_newActiveMonster = { ...healMonster_state, activeMonster: healMonster_activeMonster, };
+        return { ...state, monsterData: healMonster_newActiveMonster };
 
     // tasklist switch
 

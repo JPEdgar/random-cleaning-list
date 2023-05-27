@@ -7,7 +7,7 @@ import { useMonsterHealth } from "../hooks";
 
 const MonsterHealthBar = ({ initialDamage = 0 }) => {
   // need to get monster's current and max hp
-  const { monsterMaxHealth, monsterCurrentHealth } = useMonsterHealth();
+  const { monsterMaxHealth, monsterCurrentHealth,  } = useMonsterHealth();
 
   return (
     <div className="d-flex">
@@ -19,7 +19,7 @@ const MonsterHealthBar = ({ initialDamage = 0 }) => {
         <ProgressBar
           animated
           max={monsterMaxHealth}
-          now={monsterCurrentHealth}
+          now={monsterCurrentHealth ? monsterCurrentHealth : 0}
         />
       </div>
     </div>
