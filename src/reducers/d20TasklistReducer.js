@@ -13,15 +13,33 @@ const d20TasklistReducer = (state = {}, action) => {
 
     // monster switch
     case MONSTER_TYPES.ASSIGN_MONSTER:
-      const assignMonsterData = state.monsterData;
-      const assignMonster = { ...assignMonsterData, activeMonster: action.payload, };
+      const assignMonster_state = state.monsterData;
+      const assignMonster = {
+        ...assignMonster_state,
+        activeMonster: action.payload,
+      };
       return { ...state, monsterData: assignMonster };
 
-      case MONSTER_TYPES.UNASSIGN_MONSTER:
-        const unassignMonsterData = state.monsterData;
-        const unassignMonster = { ...unassignMonsterData, activeMonster: {}, };
-        return { ...state, monsterData: unassignMonster };
-        
+    case MONSTER_TYPES.UNASSIGN_MONSTER:
+      const unassignMonster_state = state.monsterData;
+      const unassignMonster = { ...unassignMonster_state, activeMonster: {} };
+      return { ...state, monsterData: unassignMonster };
+
+    case MONSTER_TYPES.DAMAGE_MONSTER:
+      const damageMonster_state = state.monsterData;
+      const damageMonster_activeMonster = damageMonster_state.activeMonster;
+      const damageMonster_currentDamage = damageMonster_state.activeMonster
+        .currentDamage
+        ? damageMonster_state.activeMonster.currentDamage
+        : 0;
+      damageMonster_activeMonster.currentDamage =
+        damageMonster_currentDamage + action.payload;
+      const damageMonster_newActiveMonster = {
+        ...damageMonster_state,
+        activeMonster: damageMonster_activeMonster,
+      };
+      return { ...state, monsterData: damageMonster_newActiveMonster };
+
     // tasklist switch
 
     // default

@@ -3,10 +3,11 @@ import React from "react";
 import { ProgressBar } from "react-bootstrap";
 
 import SkullIcon from "../elements/SkullIcon";
-
+import { useMonsterHealth } from "../hooks";
 
 const MonsterHealthBar = ({ initialDamage = 0 }) => {
-// need to get monster's current and max hp
+  // need to get monster's current and max hp
+  const { monsterMaxHealth, monsterCurrentHealth } = useMonsterHealth();
 
   return (
     <div className="d-flex">
@@ -14,13 +15,11 @@ const MonsterHealthBar = ({ initialDamage = 0 }) => {
         <SkullIcon />
       </div>
       <div className="w-100">
-        <span>
-          HP:
-        </span>
+        <span>HP: {monsterMaxHealth}</span>
         <ProgressBar
           animated
-          max={100}
-          now={50}
+          max={monsterMaxHealth}
+          now={monsterCurrentHealth}
         />
       </div>
     </div>
