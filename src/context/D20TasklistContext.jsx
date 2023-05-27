@@ -7,7 +7,7 @@ import { MASTER_TYPES } from "../constants/types";
 const D20TasklistContext = createContext();
 
 const D20TasklistProvider = ({ children }) => {
-  const [d20TasklistState, dispatch] = useReducer(d20TasklistReducer, {});
+  const [state, dispatch] = useReducer(d20TasklistReducer, {});
 
   useEffect(() => {
     const initializeTasklistData = async () => {
@@ -21,11 +21,11 @@ const D20TasklistProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log(d20TasklistState);
-  }, [d20TasklistState]);
+    console.log(state);
+  }, [state]);
 
   return (
-    <D20TasklistContext.Provider value={{ d20TasklistState, dispatch }}>
+    <D20TasklistContext.Provider value={{ state, dispatch }}>
       {children}
     </D20TasklistContext.Provider>
   );

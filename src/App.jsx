@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+
+import { Container } from "react-bootstrap";
+
+import Monster from "./Monster";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <Container>
+      <Monster />
+    </Container>
+  );
+};
 
-export default App
+export default App;
