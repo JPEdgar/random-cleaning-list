@@ -17,7 +17,7 @@ const Monster = () => {
           <button onClick={() => unassignMonster()}>Unassign</button>
           <button onClick={() => damageMonster(50)}>Inflict 50 damage</button>
           <button onClick={() => healMonster(50)}>Heal 50 damage</button>
-          {!isMonsterDeadFlag && <MonsterHealthBar />}
+          {!isMonsterDeadFlag ? <MonsterHealthBar /> : <h4>Monster dead</h4>}
         </>
       )}
     </>
