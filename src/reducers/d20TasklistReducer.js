@@ -1,4 +1,4 @@
-import { MASTER_TYPES } from "../constants/types";
+import { MASTER_TYPES, MONSTER_TYPES } from "../constants/types";
 
 import { initializeD20TasklistData } from "../constants/initializations";
 
@@ -12,7 +12,16 @@ const d20TasklistReducer = (state = {}, action) => {
       return action.payload;
 
     // monster switch
+    case MONSTER_TYPES.ASSIGN_MONSTER:
+      const assignMonsterData = state.monsterData;
+      const assignMonster = { ...assignMonsterData, activeMonster: action.payload, };
+      return { ...state, monsterData: assignMonster };
 
+      case MONSTER_TYPES.UNASSIGN_MONSTER:
+        const unassignMonsterData = state.monsterData;
+        const unassignMonster = { ...unassignMonsterData, activeMonster: {}, };
+        return { ...state, monsterData: unassignMonster };
+        
     // tasklist switch
 
     // default

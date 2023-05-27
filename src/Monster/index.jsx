@@ -1,12 +1,22 @@
-import React from 'react'
+import React from "react";
 
-import MonsterHealthBar from './MonsterHealthBar'
+import AssignMonster from "./AssignMonster";
+import MonsterHealthBar from "./MonsterHealthBar";
+
+import { useAssignMonster } from "../hooks";
 
 const Monster = () => {
-  return (<>
-  <MonsterHealthBar/>
-  </>
-  )
-}
+  const { isAssignedFlag, unassignMonster } = useAssignMonster();
 
-export default Monster
+  return (
+    <>
+      {!isAssignedFlag() && <AssignMonster />}
+      {isAssignedFlag() && <>
+      <button onClick={() => unassignMonster()}>Unassign</button>
+      <MonsterHealthBar />
+      </>}
+    </>
+  );
+};
+
+export default Monster;

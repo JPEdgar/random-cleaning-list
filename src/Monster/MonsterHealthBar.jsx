@@ -6,7 +6,7 @@ import SkullIcon from "../elements/SkullIcon";
 
 
 const MonsterHealthBar = ({ initialDamage = 0 }) => {
-
+// need to get monster's current and max hp
 
   return (
     <div className="d-flex">
@@ -19,8 +19,8 @@ const MonsterHealthBar = ({ initialDamage = 0 }) => {
         </span>
         <ProgressBar
           animated
-          max={null}
-          now={null}
+          max={100}
+          now={50}
         />
       </div>
     </div>
