@@ -2,7 +2,7 @@ import React from "react";
 
 import { Container } from "react-bootstrap";
 
-import Monster from "./Monster";
+import Monster from "./components/Monster";
 
 const App = () => {
   return (

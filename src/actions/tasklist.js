@@ -9,4 +9,13 @@ const getAllData = async () => {
   }
 };
 
-export { getAllData };
+const saveAllData = async (state) => {
+  try {
+    const data = await api.saveAllData(state);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getAllData, saveAllData };

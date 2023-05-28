@@ -2,7 +2,7 @@ import React from "react";
 
 import SelectMonsterCard from "./SelectMonsterCard";
 
-import { useMonsterList } from "../hooks";
+import { useMonsterList } from "../../hooks";
 
 const AssignMonster = () => {
   const { monsterList } = useMonsterList();

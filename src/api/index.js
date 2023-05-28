@@ -15,4 +15,8 @@ const getAllData = async () => {
   return await JSON.parse(localStorage.getItem(STORAGE_NAME));
 };
 
-export { getAllData };
+const saveAllData = async (data) => {
+  localStorage.setItem(STORAGE_NAME, JSON.stringify(data));
+};
+
+export { getAllData, saveAllData };

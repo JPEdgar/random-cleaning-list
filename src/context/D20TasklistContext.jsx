@@ -1,7 +1,8 @@
 import React, { createContext, useReducer, useEffect } from "react";
 
 import d20TasklistReducer from "../reducers/d20TasklistReducer";
-import { getAllData } from "../actions/tasklist";
+import { initializeD20TasklistData } from "../constants/initializations";
+import { getAllData, saveAllData } from "../actions/tasklist";
 import { MASTER_TYPES } from "../constants/types";
 
 const D20TasklistContext = createContext();
@@ -13,8 +14,10 @@ const D20TasklistProvider = ({ children }) => {
     const initializeTasklistData = async () => {
       const data = await getAllData();
 
-      if (!data) dispatch({ type: MASTER_TYPES.INITIALIZE_MASTER_LIST });
-      else dispatch({ type: MASTER_TYPES.SET_MASTER_LIST, payload: data });
+      if (!data) {
+        dispatch({ type: MASTER_TYPES.INITIALIZE_MASTER_LIST });
+        await saveAllData(initializeD20TasklistData())
+      } else dispatch({ type: MASTER_TYPES.SET_MASTER_LIST, payload: data });
     };
 
     initializeTasklistData();

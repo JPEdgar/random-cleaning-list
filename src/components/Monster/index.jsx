@@ -3,7 +3,7 @@ import React from "react";
 import AssignMonster from "./AssignMonster";
 import MonsterHealthBar from "./MonsterHealthBar";
 
-import { useAssignMonster, useMonsterHealth } from "../hooks";
+import { useAssignMonster, useMonsterHealth } from "../../hooks";
 
 const Monster = () => {
   const { isAssignedFlag, unassignMonster } = useAssignMonster();
