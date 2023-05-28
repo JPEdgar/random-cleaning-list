@@ -1,9 +1,9 @@
-import { MASTER_TYPES, MONSTER_TYPES } from "../constants/types";
+import { MASTER_TYPES, MONSTER_TYPES, SITE_TYPES } from "../constants/types";
 
 import { initializeD20TasklistData } from "../constants/initializations";
 
 const d20TasklistReducer = (state = {}, action) => {
-  // console.log("d20TasklistReducer => ", { state, action });
+  console.log("d20TasklistReducer => ", { state, action });
   switch (action.type) {
     // master switch
     case MASTER_TYPES.INITIALIZE_MASTER_LIST:
@@ -61,6 +61,13 @@ const d20TasklistReducer = (state = {}, action) => {
 
     // tasklist switch
 
+    // site data switch
+    case SITE_TYPES.SET_MODAL_TYPE:
+      const setModalType_state = state.siteData;
+      setModalType_state.activeModal = action.payload;
+      setModalType_state.showModalFlag = true;
+      return { ...state, siteData: setModalType_state };
+
     // default
     default:
       return state;
@@ -69,21 +76,25 @@ const d20TasklistReducer = (state = {}, action) => {
 
 export default d20TasklistReducer;
 
-/* monsterDetailsSchema
+/* -- REMEMBER TO UPDATE THIS COMMENT BLOCK FROM  context/D20TasklistContext.jsx -- */
+/* -- state --
+{
+    monsterData: {
+        activeMonster: {...monsterDetailsSchema, currentHP: Int},
+        monsterList: [monsterDetailsSchema]
+    },
+    siteData: {
+      activeModal: SITE_TYPES.<site type>
+      showModalFlag: Bool
+    }
+}
+*/
+/* -- monsterDetailsSchema --
 {
     id: String,
     name: String,
     maxHP: Int,
     aliveImage: String,
     deadImage: String
-}
-*/
-
-/* state layout
-{
-    monsterData: {
-        activeMonster: {...monsterDetailsSchema, currentHP: Int},
-        monsterList: [monsterDetailsSchema]
-    }
 }
 */

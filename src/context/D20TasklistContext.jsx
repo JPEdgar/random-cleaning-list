@@ -1,3 +1,26 @@
+/* STATE LAYOUT */
+/* -- state --
+{
+    monsterData: {
+        activeMonster: {...monsterDetailsSchema, currentHP: Int},
+        monsterList: [monsterDetailsSchema]
+    },
+    siteData: {
+      activeModal: SITE_TYPES.<site type>
+      showModalFlag: Bool
+    }
+}
+*/
+/* -- monsterDetailsSchema --
+{
+    id: String,
+    name: String,
+    maxHP: Int,
+    aliveImage: String,
+    deadImage: String
+}
+*/
+
 import React, { createContext, useReducer, useEffect } from "react";
 
 import d20TasklistReducer from "../reducers/d20TasklistReducer";
@@ -23,9 +46,9 @@ const D20TasklistProvider = ({ children }) => {
     initializeTasklistData();
   }, []);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log(state);
+  // }, [state]);
 
   return (
     <D20TasklistContext.Provider value={{ state, dispatch }}>

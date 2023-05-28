@@ -2,11 +2,12 @@ import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-// import { useTaskDetails } from "../../hooks";
+import { useModalInfo } from "../../hooks";
 
-const EditIcon = ({test}) => {
+const EditIcon = ({modalType}) => {
   const [hoverFlag, setHoverFlag] = useState(false);
   // const { setEditFlag } = useTaskDetails();
+  const {setModalType} = useModalInfo()
 
   const handleMouseEnter = () => {
     setHoverFlag(true);
@@ -18,7 +19,9 @@ const EditIcon = ({test}) => {
 
   const handleClick = () => {
     // setEditFlag((curr) => !curr);
-    test()
+    console.log("modalType = ", modalType)
+    setModalType(modalType)
+
   };
 
   const style = {

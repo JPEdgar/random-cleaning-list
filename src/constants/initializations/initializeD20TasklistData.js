@@ -3,6 +3,10 @@ import monsterData from "../../data/monsters.json";
 
 const initializeD20TasklistData = () => {
   return {
+    siteData: {
+      activeModal: "",
+      showModalFlag: false
+    },
     monsterData: {
       activeMonster: {},
       monsterList: monsterData,
@@ -12,21 +16,26 @@ const initializeD20TasklistData = () => {
 
 export default initializeD20TasklistData;
 
-/* monsterDetailsSchema
+/* -- REMEMBER TO UPDATE THIS COMMENT BLOCK FROM  context/D20TasklistContext.jsx -- */
+/* STATE LAYOUT */
+/* -- state --
+{
+    monsterData: {
+        activeMonster: {...monsterDetailsSchema, currentHP: Int},
+        monsterList: [monsterDetailsSchema]
+    },
+    siteData: {
+      activeModal: SITE_TYPES.<site type>
+      showModalFlag: Bool
+    }
+}
+*/
+/* -- monsterDetailsSchema --
 {
     id: String,
     name: String,
     maxHP: Int,
     aliveImage: String,
     deadImage: String
-}
-*/
-
-/* state layout
-{
-    monsterData: {
-        activeMonster: {...monsterDetailsSchema, currentHP: Int},
-        monsterList: [monsterDetailsSchema]
-    }
 }
 */
