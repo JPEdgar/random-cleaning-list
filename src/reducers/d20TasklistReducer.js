@@ -3,7 +3,7 @@ import { MASTER_TYPES, MONSTER_TYPES, SITE_TYPES } from "../constants/types";
 import { initializeD20TasklistData } from "../constants/initializations";
 
 const d20TasklistReducer = (state = {}, action) => {
-  console.log("d20TasklistReducer => ", { state, action });
+  // console.log("d20TasklistReducer => ", { state, action });
   switch (action.type) {
     // master switch
     case MASTER_TYPES.INITIALIZE_MASTER_LIST:
@@ -67,6 +67,11 @@ const d20TasklistReducer = (state = {}, action) => {
       setModalType_state.activeModal = action.payload;
       setModalType_state.showModalFlag = true;
       return { ...state, siteData: setModalType_state };
+
+    case SITE_TYPES.HIDE_MODAL:
+      const hideModal_state = state.siteData;
+      hideModal_state.showModalFlag = false;
+      return { ...state, siteData: hideModal_state };
 
     // default
     default:

@@ -10,7 +10,13 @@ const useModalInfo = () => {
     d20Dispatch({type: SITE_TYPES.SET_MODAL_TYPE, payload: modalType})
   }
 
-  return { setModalType };
+  const hideModal = () => {
+    d20Dispatch({type: SITE_TYPES.HIDE_MODAL})
+  }
+
+  const isModalOpenFlag = d20State.siteData?.showModalFlag ? d20State.siteData.showModalFlag : false
+
+  return { setModalType, hideModal, isModalOpenFlag };
 };
 
 export default useModalInfo;

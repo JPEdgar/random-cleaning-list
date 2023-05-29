@@ -1,5 +1,6 @@
 import React from "react";
 
+import MonsterModal from "./MonsterModal"
 import AssignMonster from "./AssignMonster";
 import MonsterHealthBar from "./MonsterHealthBar";
 
@@ -11,6 +12,7 @@ const Monster = () => {
 
   return (
     <>
+    <MonsterModal />
       {!isAssignedFlag() && <AssignMonster />}
       {isAssignedFlag() && (
         <>
