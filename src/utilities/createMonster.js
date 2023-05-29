@@ -2,8 +2,8 @@
 // name: String,
 // maxHP: Int,
 // currentHP : Int,
-// aliveImage: String,
-// deadImage: String
+// image: String,
+
 
 const createMonster = (monsterData = {}) => {
 

@@ -7,16 +7,26 @@ const useModalInfo = () => {
   const { state: d20State, dispatch: d20Dispatch } = useD20TasklistContext();
 
   const setModalType = (modalType) => {
-    d20Dispatch({type: SITE_TYPES.SET_MODAL_TYPE, payload: modalType})
-  }
+    d20Dispatch({ type: SITE_TYPES.SET_MODAL_TYPE, payload: modalType });
+  };
+
+  const setModalData = (modalData) => {
+    d20Dispatch({ type: SITE_TYPES.SET_MODAL_DATA, payload: modalData });
+  };
 
   const hideModal = () => {
-    d20Dispatch({type: SITE_TYPES.HIDE_MODAL})
-  }
+    d20Dispatch({ type: SITE_TYPES.HIDE_MODAL });
+  };
 
-  const isModalOpenFlag = d20State.siteData?.showModalFlag ? d20State.siteData.showModalFlag : false
+  const isModalOpenFlag = d20State.siteData?.showModalFlag
+    ? d20State.siteData.showModalFlag
+    : false;
 
-  return { setModalType, hideModal, isModalOpenFlag };
+  const modalData = d20State.siteData?.modalData
+    ? d20State.siteData.modalData
+    : {};
+
+  return { setModalType, hideModal, isModalOpenFlag, setModalData, modalData };
 };
 
 export default useModalInfo;

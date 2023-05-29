@@ -35,7 +35,6 @@ export default initializeD20TasklistData;
     id: String,
     name: String,
     maxHP: Int,
-    aliveImage: String,
-    deadImage: String
+    image: String,
 }
 */

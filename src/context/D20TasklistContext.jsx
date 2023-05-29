@@ -8,6 +8,7 @@
     siteData: {
       activeModal: SITE_TYPES.<site type>
       showModalFlag: Bool
+      modalData: {}
     }
 }
 */
@@ -16,8 +17,8 @@
     id: String,
     name: String,
     maxHP: Int,
-    aliveImage: String,
-    deadImage: String
+    image: String,
+
 }
 */
 

@@ -3,14 +3,12 @@
     "id": "0",
     "name": "Drider",
     "maxHP": 200,
-    "aliveImage": "images/TaskListMonster-Drider.jpg",
-    "deadImage": "images/TaskListMonster-Drider-Dead.jpg"
+    "image": "images/TaskListMonster-Drider.jpg"
   },
   {
     "id": "1",
     "name": "test",
     "maxHP": 2300,
-    "aliveImage": "https://picsum.photos/200",
-    "deadImage": "https://picsum.photos/200"
+    "image": "https://picsum.photos/200"
   }
 ]

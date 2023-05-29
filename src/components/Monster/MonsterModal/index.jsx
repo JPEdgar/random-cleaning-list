@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { Modal } from "react-bootstrap";
 
 import { useModalInfo } from "../../../hooks";
 
 const MonsterModal = () => {
-  const {hideModal, isModalOpenFlag} = useModalInfo();
+  const {hideModal, isModalOpenFlag, modalData} = useModalInfo();
+  // const [modalData, setModalData] = useState({})
 
   return (
     <Modal show={isModalOpenFlag} onHide={() => hideModal()} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -35,6 +36,5 @@ export default MonsterModal;
     id: String,
     name: String,
     maxHP: Int,
-    aliveImage: String,
-    deadImage: String
+    image: String,
 */

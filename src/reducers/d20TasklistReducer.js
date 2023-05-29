@@ -73,6 +73,11 @@ const d20TasklistReducer = (state = {}, action) => {
       hideModal_state.showModalFlag = false;
       return { ...state, siteData: hideModal_state };
 
+    case SITE_TYPES.SET_MODAL_DATA:
+      const setModalData_state = state.siteData;
+      setModalData_state.modalData = action.payload;
+      return { ...state, siteData: setModalData_state };
+
     // default
     default:
       return state;
@@ -91,6 +96,7 @@ export default d20TasklistReducer;
     siteData: {
       activeModal: SITE_TYPES.<site type>
       showModalFlag: Bool
+      modalData: {}
     }
 }
 */
@@ -99,7 +105,8 @@ export default d20TasklistReducer;
     id: String,
     name: String,
     maxHP: Int,
-    aliveImage: String,
-    deadImage: String
+    image: String,
+
 }
 */
+
