@@ -93,6 +93,12 @@ const d20TasklistReducer = (state = {}, action) => {
         action.payload.value;
       return { ...state, siteData: { ...editModalFormData_state } };
 
+    case SITE_TYPES.RESET_MODAL_FORM_DATA:
+      const resetModalFormData_state = cloneDeep(state.siteData);
+      const resetModalFormData = state.monsterData.monsterList.find( (x) => x.id === action.payload );
+      resetModalFormData_state.modalData = cloneDeep(resetModalFormData);
+      return { ...state, siteData: resetModalFormData_state };
+
     // default
     default:
       console.log("default");
