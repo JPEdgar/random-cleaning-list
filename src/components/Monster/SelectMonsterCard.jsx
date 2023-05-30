@@ -10,8 +10,6 @@ import { MODAL_TYPES } from "../../constants/types";
 const SelectMonsterCard = ({ monsterData = {} }) => {
   const { assignMonster } = useAssignMonster();
 
-  console.log("monsterData = ", monsterData)
-
   return (
     <Card style={{ width: "18rem" }} >
       <div>

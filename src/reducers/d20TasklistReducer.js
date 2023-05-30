@@ -1,6 +1,7 @@
 import { MASTER_TYPES, MONSTER_TYPES, SITE_TYPES } from "../constants/types";
 
 import { initializeD20TasklistData } from "../constants/initializations";
+import { cloneDeep } from "../utilities/utils";
 
 const d20TasklistReducer = (state = {}, action) => {
   // console.log("d20TasklistReducer => ", { state, action });
@@ -13,7 +14,8 @@ const d20TasklistReducer = (state = {}, action) => {
 
     // monster switch
     case MONSTER_TYPES.ASSIGN_MONSTER:
-      const assignMonster_state = state.monsterData;
+      console.log("MONSTER_TYPES.ASSIGN_MONSTER");
+      const assignMonster_state = cloneDeep(state.monsterData);
       const assignMonster_assignMonster = action.payload;
       assignMonster_assignMonster.currentDamage = 0;
       const assignMonster = {
@@ -23,12 +25,14 @@ const d20TasklistReducer = (state = {}, action) => {
       return { ...state, monsterData: assignMonster };
 
     case MONSTER_TYPES.UNASSIGN_MONSTER:
-      const unassignMonster_state = state.monsterData;
+      console.log("MONSTER_TYPES.UNASSIGN_MONSTER");
+      const unassignMonster_state = cloneDeep(state.monsterData);
       const unassignMonster = { ...unassignMonster_state, activeMonster: {} };
       return { ...state, monsterData: unassignMonster };
 
     case MONSTER_TYPES.DAMAGE_MONSTER:
-      const damageMonster_state = state.monsterData;
+      console.log("MONSTER_TYPES.DAMAGE_MONSTER");
+      const damageMonster_state = cloneDeep(state.monsterData);
       const damageMonster_activeMonster = damageMonster_state.activeMonster;
       const damageMonster_currentDamage = damageMonster_state.activeMonster
         .currentDamage
@@ -43,7 +47,8 @@ const d20TasklistReducer = (state = {}, action) => {
       return { ...state, monsterData: damageMonster_newActiveMonster };
 
     case MONSTER_TYPES.HEAL_MONSTER:
-      const healMonster_state = state.monsterData;
+      console.log("MONSTER_TYPES.HEAL_MONSTER");
+      const healMonster_state = cloneDeep(state.monsterData);
       const healMonster_activeMonster = healMonster_state.activeMonster;
       const healMonster_currentdamage = healMonster_state.activeMonster
         .currentDamage
@@ -63,23 +68,34 @@ const d20TasklistReducer = (state = {}, action) => {
 
     // site data switch
     case SITE_TYPES.SET_MODAL_TYPE:
-      const setModalType_state = state.siteData;
+      console.log("SITE_TYPES.SET_MODAL_TYPE");
+      const setModalType_state = cloneDeep(state.siteData);
       setModalType_state.activeModal = action.payload;
       setModalType_state.showModalFlag = true;
-      return { ...state, siteData: setModalType_state };
+      return { ...state, siteData: { ...setModalType_state } };
 
     case SITE_TYPES.HIDE_MODAL:
-      const hideModal_state = state.siteData;
+      console.log("SITE_TYPES.HIDE_MODAL");
+      const hideModal_state = cloneDeep(state.siteData);
       hideModal_state.showModalFlag = false;
-      return { ...state, siteData: hideModal_state };
+      return { ...state, siteData: { ...hideModal_state } };
 
     case SITE_TYPES.SET_MODAL_DATA:
-      const setModalData_state = state.siteData;
+      console.log("SITE_TYPES.SET_MODAL_DATA");
+      const setModalData_state = cloneDeep(state.siteData);
       setModalData_state.modalData = action.payload;
-      return { ...state, siteData: setModalData_state };
+      return { ...state, siteData: { ...setModalData_state } };
+
+    case SITE_TYPES.EDIT_MODAL_FORM_DATA:
+      console.log("SITE_TYPES.EDIT_MODAL_FORM_DATA");
+      const editModalFormData_state = cloneDeep(state.siteData);
+      editModalFormData_state.modalData[action.payload.name] =
+        action.payload.value;
+      return { ...state, siteData: { ...editModalFormData_state } };
 
     // default
     default:
+      console.log("default");
       return state;
   }
 };
@@ -109,4 +125,3 @@ export default d20TasklistReducer;
 
 }
 */
-

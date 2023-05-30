@@ -7,7 +7,6 @@ import { useModalInfo } from "../../hooks";
 
 const EditIcon = ({modalType, data}) => {
   const [hoverFlag, setHoverFlag] = useState(false);
-  // const { setEditFlag } = useTaskDetails();
   const {setModalType, setModalData} = useModalInfo()
 
   const handleMouseEnter = () => {
@@ -19,8 +18,6 @@ const EditIcon = ({modalType, data}) => {
   };
 
   const handleClick = () => {
-    // setEditFlag((curr) => !curr);
-    console.log("modalType = ", modalType)
     setModalType(modalType)
     setModalData(data)
 

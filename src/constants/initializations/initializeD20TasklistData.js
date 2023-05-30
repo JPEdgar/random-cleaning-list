@@ -5,7 +5,8 @@ const initializeD20TasklistData = () => {
   return {
     siteData: {
       activeModal: "",
-      showModalFlag: false
+      showModalFlag: false,
+      modalData: { name: "", id: "", maxHP: -1, image: "" },
     },
     monsterData: {
       activeMonster: {},
@@ -27,6 +28,7 @@ export default initializeD20TasklistData;
     siteData: {
       activeModal: SITE_TYPES.<site type>
       showModalFlag: Bool
+      modalData: {}
     }
 }
 */
@@ -36,5 +38,6 @@ export default initializeD20TasklistData;
     name: String,
     maxHP: Int,
     image: String,
+
 }
 */
