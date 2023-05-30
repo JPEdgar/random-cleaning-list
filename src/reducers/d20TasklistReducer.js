@@ -1,7 +1,7 @@
 import { MASTER_TYPES, MONSTER_TYPES, SITE_TYPES } from "../constants/types";
 
 import { initializeD20TasklistData } from "../constants/initializations";
-import { cloneDeep } from "../utilities/utils";
+import { cloneDeep } from "../utilities/";
 
 const d20TasklistReducer = (state = {}, action) => {
   // console.log("d20TasklistReducer => ", { state, action });

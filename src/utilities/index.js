@@ -1,3 +1,4 @@
+import { cloneDeep } from "./lodash";
 import createMonster from "./createMonster";
 
-export { createMonster };
+export { createMonster, cloneDeep };
