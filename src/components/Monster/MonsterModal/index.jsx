@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, ButtonGroup } from "react-bootstrap";
 
 import { useModalInfo } from "../../../hooks";
 
@@ -11,6 +11,8 @@ const MonsterModal = () => {
     modalData,
     handleChange_MonsterModal,
     resetModalData,
+    updateMonsterData,
+    saveAndClose,
   } = useModalInfo();
 
   const handleSubmit = (e) => {
@@ -25,12 +27,16 @@ const MonsterModal = () => {
     resetModalData(id);
   };
 
-  const handleSave = () => {
-    //
+  const handleSave = (modalData) => {
+    updateMonsterData(modalData);
   };
 
   const handleClose = () => {
     hideModal();
+  };
+
+  const handleSaveAndClose = (modalData) => {
+    saveAndClose(modalData);
   };
 
   return (
@@ -83,6 +89,7 @@ const MonsterModal = () => {
         {/* <button onClick={() => console.log("modalData = ", modalData)}>Log modal data</button> */}
         <div className="d-flex justify-content-between w-100">
           <Button
+            size="sm"
             variant="warning"
             style={{ width: "100px" }}
             onClick={() => handleReset(modalData.id)}
@@ -90,15 +97,27 @@ const MonsterModal = () => {
             Reset
           </Button>
           <div>
+            <ButtonGroup className="mx-2">
+              <Button
+                variant="primary"
+                size="sm"
+                style={{ width: "80px" }}
+                onClick={() => handleSave(modalData)}
+              >
+                Save
+              </Button>
+              <Button
+                variant="info"
+                size="sm"
+                style={{ width: "120px" }}
+                onClick={() => handleSaveAndClose(modalData)}
+              >
+                Save and Close
+              </Button>
+            </ButtonGroup>
+
             <Button
-              variant="success"
-              className="mx-2"
-              style={{ width: "100px" }}
-              onClick={() => handleSave()}
-            >
-              Save
-            </Button>
-            <Button
+              size="sm"
               variant="secondary"
               style={{ width: "100px" }}
               onClick={() => handleClose()}

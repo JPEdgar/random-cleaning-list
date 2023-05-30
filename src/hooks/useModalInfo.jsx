@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import useD20TasklistContext from "./contexts/useD20TasklistContext";
-import { SITE_TYPES } from "../constants/types";
+import { SITE_TYPES, MONSTER_TYPES } from "../constants/types";
 
 const useModalInfo = () => {
   const { state: d20State, dispatch: d20Dispatch } = useD20TasklistContext();
@@ -23,7 +23,16 @@ const useModalInfo = () => {
   };
 
   const resetModalData = (id) => {
-    d20Dispatch({type: SITE_TYPES.RESET_MODAL_FORM_DATA, payload: id})
+    d20Dispatch({ type: SITE_TYPES.RESET_MODAL_FORM_DATA, payload: id });
+  };
+
+  const updateMonsterData = (data) => {
+    d20Dispatch({ type: MONSTER_TYPES.UPDATE_MONSTER_DATA, payload: data });
+  };
+
+  const saveAndClose = (data) => {
+    d20Dispatch({ type: MONSTER_TYPES.UPDATE_MONSTER_DATA, payload: data });
+    d20Dispatch({ type: SITE_TYPES.HIDE_MODAL });
   };
 
   const modalData = d20State.siteData?.modalData
@@ -42,6 +51,8 @@ const useModalInfo = () => {
     modalData,
     handleChange_MonsterModal,
     resetModalData,
+    updateMonsterData,
+    saveAndClose,
   };
 };
 
