@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import useD20TasklistContext from "./contexts/useD20TasklistContext";
 import { SITE_TYPES, MONSTER_TYPES } from "../constants/types";
+import {updateMonsterData as updateMonsterDataAction} from "../actions/tasklist"
 
 const useModalInfo = () => {
   const { state: d20State, dispatch: d20Dispatch } = useD20TasklistContext();
@@ -28,10 +29,12 @@ const useModalInfo = () => {
 
   const updateMonsterData = (data) => {
     d20Dispatch({ type: MONSTER_TYPES.UPDATE_MONSTER_DATA, payload: data });
+    updateMonsterDataAction(data)
   };
 
   const saveAndClose = (data) => {
     d20Dispatch({ type: MONSTER_TYPES.UPDATE_MONSTER_DATA, payload: data });
+    updateMonsterDataAction(data)
     d20Dispatch({ type: SITE_TYPES.HIDE_MODAL });
   };
 

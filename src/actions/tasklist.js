@@ -18,4 +18,13 @@ const saveAllData = async (state) => {
   }
 };
 
-export { getAllData, saveAllData };
+const updateMonsterData = async (updatedMonsterData) => {
+  try {
+    const data = await api.updateMonsterData(updatedMonsterData);
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export { getAllData, saveAllData, updateMonsterData };
