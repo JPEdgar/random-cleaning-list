@@ -3,6 +3,7 @@ import useAssignMonster from "./useAssignMonster";
 import useMonsterList from "./useMonsterList";
 import useModalInfo from "./useModalInfo";
 import useMonsterDetails from "./useMonsterDetails";
+import useTasklist from "./useTasklist";
 
 export {
   useMonsterHealth,
@@ -10,4 +11,5 @@ export {
   useMonsterList,
   useModalInfo,
   useMonsterDetails,
+  useTasklist,
 };

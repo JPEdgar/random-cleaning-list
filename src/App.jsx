@@ -20,7 +20,7 @@ const App = () => {
       <button onClick={() => console.log(state)}>Log state</button>
       <button onClick={() => clearStorage()}>Clear storage</button>
       <Monster />
-      <Tasklist/>
+      <Tasklist />
     </Container>
   );
 };

@@ -1,16 +1,18 @@
 /* STATE LAYOUT */
 /* -- state --
-{
-    monsterData: {
-        activeMonster: {...monsterDetailsSchema, currentHP: Int},
-        monsterList: [monsterDetailsSchema]
+siteData: {
+      activeModal: "",
+      showModalFlag: false,
+      modalData: { name: "", id: "", maxHP: -1, image: "" },
     },
-    siteData: {
-      activeModal: SITE_TYPES.<site type>
-      showModalFlag: Bool
-      modalData: {}
+    monsterData: {
+      activeMonster: {},
+      monsterList: monsterData,
+    },
+    tasklistData: {
+      tasklist: tasklistData
     }
-}
+  };
 */
 /* -- monsterDetailsSchema --
 {
@@ -20,6 +22,29 @@
     image: String,
 
 }
+*/ 
+/* -- tasklistSchema --
+  {
+    "id": Int,
+    "taskName": String,
+    "details": String,
+    "taskDamage": Int,
+    "break": {
+      "takeBreakFlag": Bool,
+      "multiplier": Int,
+      "numerical": Int,
+      "modifier": Int
+    },
+    "completed": Bool,
+    "critFlag": Bool,
+    "priority": Enum, ["low"]
+    "room": String,
+    "frequency": { 
+      "multiplier": Int, 
+      "numerical": Int, 
+      "modifier": Int 
+    }
+  }
 */
 
 import React, { createContext, useReducer, useEffect } from "react";
