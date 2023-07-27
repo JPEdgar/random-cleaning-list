@@ -4,6 +4,7 @@ import useMonsterList from "./useMonsterList";
 import useModalInfo from "./useModalInfo";
 import useMonsterDetails from "./useMonsterDetails";
 import useTasklist from "./useTasklist";
+import useBreakpoints from "./useBreakpoints";
 
 export {
   useMonsterHealth,
@@ -12,4 +13,5 @@ export {
   useModalInfo,
   useMonsterDetails,
   useTasklist,
+  useBreakpoints,
 };
