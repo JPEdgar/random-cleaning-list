@@ -11,12 +11,12 @@ const SelectMonsterCard = ({ monsterData = {} }) => {
   const { assignMonster } = useAssignMonster();
 
   return (
-    <Card style={{ width: "18rem" }} >
+    <Card style={{ width: "18rem", cursor: "pointer" }} className="monsterCard">
       <div>
-        <Card.Img variant="top" src={monsterData.image} onClick={() => assignMonster(monsterData)}/>
+        <Card.Img variant="top" src={monsterData.image} onClick={() => assignMonster(monsterData)} />
 
-        <div style={{position: "absolute", display: "flex", right: "0", top: "0", backgroundColor: "rgba(255, 255, 255, 0.6)", borderRadius: "0 5px 0 5px "}}>
-          <EditIcon modalType={MODAL_TYPES.EDIT_MONSTER_MODAL} data={monsterData}/>
+        <div style={{ position: "absolute", display: "flex", right: "0", top: "0", backgroundColor: "rgba(255, 255, 255, 0.6)", borderRadius: "0 5px 0 5px ", }} >
+          <EditIcon modalType={MODAL_TYPES.EDIT_MONSTER_MODAL} data={monsterData} />
           <TrashIcon />
         </div>
       </div>

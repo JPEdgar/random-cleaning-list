@@ -7,3 +7,25 @@
 .title {
   font-family: "MedievalSharp", cursive;
 }
+
+.monsterCard {
+  border-width: 2px;
+  border-color: white;
+}
+
+.monsterCard:hover {
+  border-color: red;
+  border-width: 3px;
+  animation: cardHover 0.7s;
+}
+
+@keyframes cardHover {
+  from {
+    border-width: 2px;
+    border-color: white;
+  }
+  to {
+    border-width: 4px;
+    border-color: red;
+  }
+}
