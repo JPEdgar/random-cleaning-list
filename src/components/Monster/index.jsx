@@ -1,6 +1,6 @@
 import React from "react";
 
-import MonsterModal from "./MonsterModal"
+import MonsterModal from "./MonsterModal";
 import AssignMonster from "./AssignMonster";
 import MonsterHealthBar from "./MonsterHealthBar";
 import MonsterDetails from "./MonsterDetails";
@@ -13,14 +13,14 @@ const Monster = () => {
 
   return (
     <>
-    <MonsterModal />
-      {!isAssignedFlag() && <AssignMonster />}
-      {isAssignedFlag() && (
+      <MonsterModal />
+      {!isAssignedFlag && <AssignMonster />}
+      {isAssignedFlag && (
         <>
           <button onClick={() => unassignMonster()}>Unassign</button>
           <button onClick={() => damageMonster(50)}>Inflict 50 damage</button>
           <button onClick={() => healMonster(50)}>Heal 50 damage</button>
-          <MonsterDetails/>
+          <MonsterDetails />
           {!isMonsterDeadFlag ? <MonsterHealthBar /> : <h4>Monster dead</h4>}
         </>
       )}
