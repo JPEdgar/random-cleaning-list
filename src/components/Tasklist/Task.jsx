@@ -1,6 +1,11 @@
 import React from "react";
 
 const Task = ({ taskData, index }) => {
+
+  const handleClick = () => {
+    console.log("index = ", index)
+  }
+
   return (
     <>
       <div
@@ -11,6 +16,7 @@ const Task = ({ taskData, index }) => {
           lineHeight: "1.2rem",
           border: "1px solid red",
         }}
+        onClick={() => handleClick()}
       >
         <span style={{ width: "1.6rem", minWidth: "1.6rem" }}>{index}.</span>
         <span style={{}} className="w-100">
