@@ -5,6 +5,7 @@ const MONSTER_TYPES = {
   HEAL_MONSTER: "heal-monster",
   UPDATE_MONSTER_DATA: "update-monster-data",
   DELETE_MONSTER: "delete-monster",
+  ADD_MONSTER: "add-monster"
 };
 
 export default MONSTER_TYPES;
