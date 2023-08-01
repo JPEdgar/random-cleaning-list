@@ -18,9 +18,12 @@ const Monster = () => {
     <>
       <MonsterModal />
 
-      <Navbar style={{backgroundColor: "pink"}} className="d-flex justify-content-between px-3">
+      <Navbar
+        style={{ backgroundColor: "pink" }}
+        className="d-flex justify-content-between px-3"
+      >
         <Navbar.Brand>d20 Tasklist</Navbar.Brand>
-        <AddIcon />
+        <AddIcon monsterFlag/>
       </Navbar>
 
       {!isAssignedFlag && <AssignMonster />}

@@ -3,8 +3,14 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const AddIcon = () => {
+import { useMonsterList, useModalInfo } from "../../hooks";
+import { MODAL_TYPES } from "../../constants/types";
+
+
+const AddIcon = ({ monsterFlag = false }) => {
   const [hoverFlag, setHoverFlag] = useState(false);
+  const { addMonster } = useMonsterList();
+  const { setModalType, setModalData } = useModalInfo();
 
   const handleMouseEnter = () => {
     setHoverFlag(true);
@@ -15,8 +21,11 @@ const AddIcon = () => {
   };
 
   const handleClick = () => {
-    //
-    console.log("add")
+    if (monsterFlag) {
+      setModalType(MODAL_TYPES.ADD_MONSTER_MODAL)
+    } else {
+      console.log("add - other");
+    }
   };
 
   const style = {

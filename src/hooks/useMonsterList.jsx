@@ -15,7 +15,11 @@ const useMonsterList = () => {
     d20Dispatch({ type: MONSTER_TYPES.DELETE_MONSTER, payload: id });
   };
 
-  return { monsterList, deleteMonster };
+  const addMonster = () => {
+    d20Dispatch({ type: MONSTER_TYPES.ADD_MONSTER });
+  };
+
+  return { monsterList, deleteMonster, addMonster };
 };
 
 export default useMonsterList;
