@@ -7,7 +7,19 @@
   },
   {
     "id": "1",
-    "name": "test",
+    "name": "test 1",
+    "maxHP": 2300,
+    "image": "https://picsum.photos/200"
+  },
+  {
+    "id": "2",
+    "name": "test 2",
+    "maxHP": 2300,
+    "image": "https://picsum.photos/200"
+  },
+  {
+    "id": "3",
+    "name": "test 3",
     "maxHP": 2300,
     "image": "https://picsum.photos/200"
   }
