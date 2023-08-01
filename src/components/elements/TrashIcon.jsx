@@ -14,17 +14,12 @@ const TrashIcon = ({
   const [showAlert, setShowAlert] = useState(false);
   const [hoverFlag, setHoverFlag] = useState(false);
 
-  const temp = () => {
-    //
-  };
-
   const handleMouseEnter = () => {
     setHoverFlag(true);
   };
 
   const handleMouseExit = () => {
-    setHoverFlag(false);
-    setShowAlert(false);
+    hideAlert();
   };
 
   const handleClick = () => {
@@ -33,17 +28,18 @@ const TrashIcon = ({
   };
 
   const hideAlert = () => {
+    setHoverFlag(false);
     setShowAlert(false);
   };
 
-  const handleDelete = () => {
-    // deleteCommand(task.id);
-    handleClose();
+  const handleDelete = (id) => {
+    deleteCommand(id);
+    hideAlert();
   };
 
   const handleClose = () => {
     hideAlert();
-    //  closeCommand();
+    closeCommand();
   };
 
   const style = {
@@ -81,7 +77,7 @@ const TrashIcon = ({
           <p>Do you really want to delete {data?.name}?</p>
           <hr />
           <p className="mb-0">
-            <Button variant="danger" onClick={() => handleDelete()}>
+            <Button variant="danger" onClick={() => handleDelete(data.id)}>
               Confirm
             </Button>
             <Button onClick={() => handleClose()}>Exit</Button>

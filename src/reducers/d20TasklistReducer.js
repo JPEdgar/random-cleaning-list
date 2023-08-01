@@ -70,9 +70,21 @@ const d20TasklistReducer = (state = {}, action) => {
     case MONSTER_TYPES.UPDATE_MONSTER_DATA:
       console.log("MONSTER_TYPES.UPDATE_MONSTER_DATA");
       const updateMonsterData_state = cloneDeep(state.monsterData);
-      const updatedMonsterData = updateMonsterData_state.monsterList.map((x) => x.id === action.payload.id ? action.payload : x );
+      const updatedMonsterData = updateMonsterData_state.monsterList.map((x) =>
+        x.id === action.payload.id ? action.payload : x
+      );
       updateMonsterData_state.monsterList = [...updatedMonsterData];
       return { ...state, monsterData: updateMonsterData_state };
+
+    case MONSTER_TYPES.DELETE_MONSTER:
+      console.log("MONSTER_TYPES.DELETE_MONSTER");
+      const deleteMonster_state = cloneDeep(state.monsterData);
+      const deleteMonsterData = deleteMonster_state.monsterList.filter(
+        (x) => x.id !== action.payload
+      );
+      console.log(deleteMonsterData);
+      deleteMonster_state.monsterList = [...deleteMonsterData];
+      return { ...state, monsterData: deleteMonster_state };
 
     // tasklist switch
 
@@ -104,7 +116,7 @@ const d20TasklistReducer = (state = {}, action) => {
       return { ...state, siteData: { ...editModalFormData_state } };
 
     case SITE_TYPES.RESET_MODAL_FORM_DATA:
-      console.log("SITE_TYPES.RESET_MODAL_FORM_DATA")
+      console.log("SITE_TYPES.RESET_MODAL_FORM_DATA");
       const resetModalFormData_state = cloneDeep(state.siteData);
       const resetModalFormData = state.monsterData.monsterList.find(
         (x) => x.id === action.payload
