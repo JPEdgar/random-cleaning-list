@@ -12,7 +12,7 @@ const SelectMonsterCard = ({ monsterData = {} }) => {
   const { deleteMonster } = useMonsterList();
 
   return (
-    <Col className="my-2">
+    <Col className="my-2 d-flex justify-content-center">
       <Card
         style={{ width: "18rem", cursor: "pointer" }}
         className="monsterCard"
