@@ -19,6 +19,18 @@
   animation: cardHover 0.7s;
 }
 
+.testRow {
+  cursor: pointer;
+}
+
+.testRow:hover {
+  background-color: cyan;
+}
+
+.testSpan {
+  background-color: green;
+}
+
 @keyframes cardHover {
   from {
     border-width: 2px;

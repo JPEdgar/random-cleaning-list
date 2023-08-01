@@ -8,7 +8,7 @@ const MonsterDetails = () => {
   console.log(monsterDetails);
   return (
     <>
-      <Image src={monsterDetails.image} alt={`image-${monsterDetails.name}`}/>
+      <Image src={monsterDetails.image} alt={`image-${monsterDetails.name}`} style={{maxWidth: "30rem"}}/>
       <div>{monsterDetails.name}</div>
     </>
   );
