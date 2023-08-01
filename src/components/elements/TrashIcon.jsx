@@ -39,7 +39,6 @@ const TrashIcon = ({
 
   const handleClose = () => {
     hideAlert();
-    closeCommand();
   };
 
   const style = {
@@ -53,7 +52,7 @@ const TrashIcon = ({
       onMouseEnter={() => handleMouseEnter()}
       onMouseLeave={() => handleMouseExit()}
       style={style}
-      className="mx-1"
+      className="m-1 d-flex align-items-center justify-content-center"
     >
       <FontAwesomeIcon icon={faTrashCan} onClick={() => handleClick()} />
 

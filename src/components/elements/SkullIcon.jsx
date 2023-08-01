@@ -12,6 +12,7 @@ const SkullIcon = () => {
         borderRadius: "50%",
         color: "red",
       }}
+      className="d-flex align-items-center justify-content-center"
     >
       <FontAwesomeIcon
         style={{ color: "red", fontSize: "2.5rem" }}

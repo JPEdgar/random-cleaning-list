@@ -1,9 +1,12 @@
 import React from "react";
 
+import { Nav, Navbar, Button } from "react-bootstrap";
+
 import MonsterModal from "./MonsterModal";
 import AssignMonster from "./AssignMonster";
 import MonsterHealthBar from "./MonsterHealthBar";
 import MonsterDetails from "./MonsterDetails";
+import AddIcon from "../elements/AddIcon";
 
 import { useAssignMonster, useMonsterHealth } from "../../hooks";
 
@@ -14,6 +17,12 @@ const Monster = () => {
   return (
     <>
       <MonsterModal />
+
+      <Navbar style={{backgroundColor: "pink"}} className="d-flex justify-content-between px-3">
+        <Navbar.Brand>d20 Tasklist</Navbar.Brand>
+        <AddIcon />
+      </Navbar>
+
       {!isAssignedFlag && <AssignMonster />}
       {isAssignedFlag && (
         <>
