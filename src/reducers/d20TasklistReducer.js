@@ -100,6 +100,8 @@ const d20TasklistReducer = (state = {}, action) => {
       console.log("SITE_TYPES.HIDE_MODAL");
       const hideModal_state = cloneDeep(state.siteData);
       hideModal_state.showModalFlag = false;
+      hideModal_state.activeModal = "";
+      hideModal_state.modalData = { name: "", id: "", maxHP: -1, image: "" };
       return { ...state, siteData: { ...hideModal_state } };
 
     case SITE_TYPES.SET_MODAL_DATA:
